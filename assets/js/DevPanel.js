@@ -12,11 +12,13 @@ export class DevPanel {
   }
 
   init() {
-    if (import.meta.env.DEV || import.meta.env.MODE === "development") {
-      this.createPanel();
-      this.addEventListeners();
-      this.addToggleKeyboard();
-      this.show();
+    if (import.meta.env) {
+      if (import.meta.env.DEV || import.meta.env.MODE === "development") {
+        this.createPanel();
+        this.addEventListeners();
+        this.addToggleKeyboard();
+        this.show();
+      }
     }
   }
 
