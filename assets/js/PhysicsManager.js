@@ -1,4 +1,4 @@
-import Matter from 'matter-js';
+
 import { config } from './config.js';
 
 const { Bodies, World, Body, Events } = Matter;

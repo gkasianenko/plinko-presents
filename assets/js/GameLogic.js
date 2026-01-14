@@ -1,7 +1,6 @@
 import { playBigWinSound } from './base64sounds.js';
 import { dropCoins } from './CoinDrop.js';
 import { config } from './config.js';
-import Matter from 'matter-js';
 
 const { Events } = Matter;
 

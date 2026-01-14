@@ -1,4 +1,4 @@
-import Matter from 'matter-js';
+
 import { config, updateSizesBasedOnRows } from './config.js';
 import PyramidManager from './PyramidManager.js';
 import BinsManager from './BinsManager.js';

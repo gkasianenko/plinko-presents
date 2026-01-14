@@ -1,5 +1,4 @@
 import { baseConfig, config, updateSizesBasedOnRows } from "./config.js";
-import Matter from "matter-js";
 import WinModalManager from "./WinModalManager.js";
 import TargetWinsCalculator from "./TargetWinsCalculator.js";
 import { animateNumber, CURRENCY } from "./utils.js";
