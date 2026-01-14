@@ -1,6 +1,6 @@
 // Массив с base64 монетками разных типов
 
-import base64coins from "./base64coins";
+import base64coins from "./base64coins.js";
 const coinImgs = [
   base64coins[3],
   base64coins[4],

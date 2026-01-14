@@ -1,4 +1,4 @@
-import base64coins from "./base64coins";
+import base64coins from "./base64coins.js";
 
 const CONFIG = {
   //Массив монеток в формате base64
