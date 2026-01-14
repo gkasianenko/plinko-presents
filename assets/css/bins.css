@@ -115,31 +115,31 @@
 }
 
 .bin-slide-from-left--1 {
-  background-image: url("/assets/images/hole1.webp");
+  background-image: url("../images/hole1.webp");
 }
 .bin-slide-from-left--2 {
-  background-image: url("/assets/images/hole2.webp");
+  background-image: url("../images/hole2.webp");
 }
 .bin-slide-from-left--3 {
-  background-image: url("/assets/images/hole3.webp");
+  background-image: url("../images/hole3.webp");
 }
 .bin-slide-from-left--4 {
-  background-image: url("/assets/images/hole4.webp");
+  background-image: url("../images/hole4.webp");
 }
 .bin-scale-center {
-  background-image: url("/assets/images/hole5.webp");
+  background-image: url("../images/hole5.webp");
 }
 .bin-slide-from-right--6 {
-  background-image: url("/assets/images/hole4.webp");
+  background-image: url("../images/hole4.webp");
 }
 .bin-slide-from-right--7 {
-  background-image: url("/assets/images/hole3.webp");
+  background-image: url("../images/hole3.webp");
 }
 .bin-slide-from-right--8 {
-  background-image: url("/assets/images/hole2.webp");
+  background-image: url("../images/hole2.webp");
 }
 .bin-slide-from-right--9 {
-  background-image: url("/assets/images/hole1.webp");
+  background-image: url("../images/hole1.webp");
 }
 
 .bin-slide-from-right {

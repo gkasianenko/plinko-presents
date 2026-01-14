@@ -30,7 +30,7 @@
   margin: 0 auto;
   text-align: center;
   transition: var(--transition-default);
-  background-image: url("/assets/images/play-btn.webp");
+  background-image: url("../images/play-btn.webp");
   background-repeat: no-repeat;
   background-size: contain;
   animation: shakeAndScale 0.5s ease-in-out infinite;

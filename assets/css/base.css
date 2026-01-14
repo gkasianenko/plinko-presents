@@ -15,7 +15,7 @@ body {
 
 body {
   font-family: var(--luckiest);
-  background-image: url("/assets/images/plinko-bg.webp");
+  background-image: url("../images/plinko-bg.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -123,7 +123,7 @@ canvas {
   margin-top: 50px;
   width: 410px;
   height: 80px;
-  background-image: url("/assets/images/score-btn.webp");
+  background-image: url("../images/score-btn.webp");
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
@@ -280,7 +280,7 @@ canvas {
   transform: translate(-50%, -50%);
   width: 480px;
   height: 250px;
-  background-image: url("/assets/images/welcome-bg.webp");
+  background-image: url("../images/welcome-bg.webp");
   background-repeat: no-repeat;
   background-size: contain;
   transition: var(--transition-default);
@@ -328,7 +328,7 @@ canvas {
 .plinko-recieve__btn {
   width: 350px;
   height: 82px;
-  background-image: url("/assets/images/install-btn.webp");
+  background-image: url("../images/install-btn.webp");
   background-repeat: no-repeat;
   background-size: contain;
   color: #612a2a;
@@ -637,7 +637,7 @@ canvas {
   bottom: -30%;
   left: 50%;
   transform: translateX(-50%);
-  background-image: url("/assets/images/money-group.webp");
+  background-image: url("../images/money-group.webp");
   background-repeat: no-repeat;
   width: 900px;
   height: 800px;
@@ -661,7 +661,7 @@ canvas {
   font-size: 40px;
   font-weight: 400;
   text-align: center;
-  background-image: url("/assets/images/install-btn.webp");
+  background-image: url("../images/install-btn.webp");
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.3s all ease-in-out;
@@ -952,7 +952,7 @@ canvas {
     margin-top: 0;
     width: 340px;
     height: 66px;
-    background-image: url("/assets/images/score-btn.webp");
+    background-image: url("../images/score-btn.webp");
     background-repeat: no-repeat;
     background-size: contain;
     position: relative;
