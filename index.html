@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Plinko Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&family=Overpass:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="game-container">
+        <div class="plinko-field hide-game" id="plinko-field">
+          <div id="wins-container" class="wins-container">
+            <div class="wins-wrapper">
+              <div class="wins-info">
+                <span class="wins-desc">BONUS</span>
+                <span class="wins-desc">GAME</span>
+              </div>
+              <div class="wins-result">
+                <span id="wins-display" class="wins-display">€20</span>
+              </div>
+            </div>
+          </div>
+          <div class="plinko-recieve" id="plinko-recieve">
+            <span class="plinko-recieve__text">WELCOME BONUS</span>
+            <span class="plinko-recieve__amount">€1500</span>
+            <div class="plinko-recieve__btn-wrapper">
+              <button id="recieve-button" class="plinko-recieve__btn">
+                RECIEVE
+              </button>
+              <img
+                class="game-finale__hand"
+                src="/assets/images/plinko-hand.webp"
+              />
+            </div>
+          </div>
+          <div class="plinko-hole"></div>
+          <div id="plinko-game"></div>
+          <div id="bins-container" class="bins-container"></div>
+
+          <div class="game-controls">
+            <div class="game-button">
+              <button id="bet-button" class="bet-button">
+                PLAY
+              </button>
+              <img
+                class="game-finale__hand" id="bet-button-hand"
+                src="/assets/images/plinko-hand.webp"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="game-app hide" id="game-app">
+          <div class="game-app__wrapper">
+            <div class="game-app__top">
+              <div class="game-app__search">
+                <img src="/assets/images/app-search.webp" />
+              </div>
+              <div class="game-app__balance">
+                <span>Main • EUR</span>
+                <span id="app-amount" class="game-app__amount">€0</span>
+                <img
+                  class="game-app__accounts"
+                  src="/assets/images/app-accounts.webp"
+                />
+              </div>
+            </div>
+            <div class="game-app__bottom">
+              <div class="game-app__controls">
+                <img src="/assets/images/app-controls.webp" />
+              </div>
+              <div class="game-app__notifications" id="app-notifications">
+                <div class="game-app__notification">
+                  <div class="left">
+                    <div class="game-app__notification-logo">
+                      <img src="/assets/images/plinko-small.webp" />
+                    </div>
+                    <div class="game-app__notification-info">
+                      <span>Plinko</span>
+                      <span class="game-app__date">Today, 9:18</span>
+                    </div>
+                  </div>
+                  <div class="right">
+                    <span>+2173.33€</span>
+                  </div>
+                </div>
+                <div class="game-app__notification">
+                  <div class="left">
+                    <div class="game-app__notification-logo">
+                      <img src="/assets/images/plinko-small.webp" />
+                    </div>
+                    <div class="game-app__notification-info">
+                      <span>Plinko</span>
+                      <span class="game-app__date">Today, 9:17</span>
+                    </div>
+                  </div>
+                  <div class="right">
+                    <span>+2173.33€</span>
+                  </div>
+                </div>
+                <div class="game-app__notification">
+                  <div class="left">
+                    <div class="game-app__notification-logo">
+                      <img src="/assets/images/plinko-small.webp" />
+                    </div>
+                    <div class="game-app__notification-info">
+                      <span>Plinko</span>
+                      <span class="game-app__date">Today, 9:17</span>
+                    </div>
+                  </div>
+                  <div class="right">
+                    <span>+2173.33€</span>
+                  </div>
+                </div>
+                <span class="game-app__more">See all</span>
+              </div>
+            </div>
+            <div class="game-app__nav">
+              <img src="/assets/images/app-nav.webp" />
+            </div>
+          </div>
+        </div>
+        <div class="game-finale hide" id="game-finale">
+          <div class="game-finale__wrapper">
+            <div class="game-finale__logo">
+              <img src="/assets/images/plinko-logo.webp" />
+            </div>
+            <div class="game-finale__text">
+              <h1 class="game-finale__title">
+                <span class="game-finale__title-word">BONUS</span>
+                <span class="game-finale__title-win">€1500+250</span>
+                <span>free spins </span>
+              </h1>
+            </div>
+            <div class="game-finale__install">
+              <a class="game-finale__button" href="{offer_link}"> INSTALL </a>
+              <img
+                class="game-finale__hand"
+                src="/assets/images/plinko-hand.webp"
+              />
+            </div>
+          </div>
+          <div class="game-finale__background"></div>
+        </div>
+        <div class="game-left-controls"></div>
+      </div>
+      <div class="game-push" id="game-push">
+        <div class="game-push__wrapper">
+          <img src="/assets/images/message-6520.webp" />
+        </div>
+      </div>
+      <div class="win-coins-container hide" id="coinsContainer"></div>
+    </div>
+
+    <!-- Win modal -->
+    <div id="win-modal" class="win-modal">
+      <div class="win-modal__content" id="win-modal-content">
+        <div class="win-modal__image">
+          <img src="/assets/images/big-win.webp" />
+        </div>
+        <div class="win-modal__body">
+          <div class="wins-container">
+            <div class="wins-wrapper">
+              <span id="win-amount" class="win-modal__amount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="assets/js/index.js"></script>
+  </body>
+</html>

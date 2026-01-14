@@ -1,0 +1,109 @@
+/* Контейнер для отладочного ввода */
+.debug-input-container {
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Поле отладочного ввода */
+.debug-input {
+  padding: 8px;
+  width: 80%;
+  border: 1px solid #4caf50;
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+/* Кнопка ставки */
+.bet-button {
+  display: block;
+  width: 152px;
+  height: 152px;
+  border-radius: 100%;
+  font-weight: 400;
+  font-size: 45px;
+  color: #ab29cc;
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  transition: var(--transition-default);
+  background-image: url("/assets/images/play-btn.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: shakeAndScale 0.5s ease-in-out infinite;
+
+  /* Initial hidden state for animation */
+  opacity: 0;
+  transform: scale(1.5);
+  /* box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  animation: bet-glow 2s ease-in-out infinite alternate; */
+}
+
+@keyframes bet-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    border-color: #00ff00;
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.3);
+    border-color: #33ff33;
+  }
+}
+
+.bet-button:active {
+  transform: scale(0.98);
+  transition: var(--transition-active);
+  animation: none;
+}
+
+.bet-button-disabled {
+  background-color: #555555;
+  color: #aaaaaa;
+  cursor: not-allowed;
+  animation: none;
+}
+
+.bet-button-disabled:hover {
+  background-color: #555555;
+  box-shadow: var(--shadow-default);
+  transform: none;
+}
+
+/* Планшеты - уменьшаем кнопку PLAY */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .bet-button {
+    padding: 10px;
+    font-size: 45px;
+    border-radius: 12px;
+  }
+}
+
+/* Мобильные устройства - уменьшаем кнопку bet */
+@media (max-width: 768px) {
+  .bet-button {
+    width: 152px;
+    height: 152px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+    .bet-button {
+    width: 120px;
+    height: 120px;
+    font-size: 33px;
+  }
+}
+
+/* Очень маленькие экраны - еще больше уменьшаем */
+@media (max-width: 500px) {
+  .bet-button {
+    width: 100px;
+    height: 100px;
+
+            font-size: 20px;
+    border-radius: 7px;
+  }
+}

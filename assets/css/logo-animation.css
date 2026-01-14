@@ -1,0 +1,228 @@
+/* Logo Animation Styles */
+
+/* Individual logo layer styles for animations */
+#logo-layer-1, #logo-layer-pyramid-1 {
+    z-index: 1;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+#logo-layer-2, #logo-layer-pyramid-2 {
+    z-index: 2;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+#logo-layer-3, #logo-layer-pyramid-3 {
+    z-index: 3;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+#logo-layer-4, #logo-layer-pyramid-4 {
+    z-index: 4;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+#logo-layer-5, #logo-layer-pyramid-5 {
+    z-index: 5;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+#logo-layer-6, #logo-layer-pyramid-6 {
+    z-index: 6;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+#logo-ball, #logo-ball-pyramid {
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+#logo-path, #logo-path-pyramid {
+    z-index: 7;
+    opacity: 0;
+}
+
+/* Logo intro animation classes */
+.logo-layer-appear-6 {
+    animation: logoScaleAppear 0.25s ease-out 0s forwards;
+}
+
+.logo-layer-appear-5 {
+    animation: logoScaleAppear 0.25s ease-out 0.04s forwards;
+}
+
+.logo-layer-appear-4 {
+    animation: logoScaleAppear 0.25s ease-out 0.08s forwards;
+}
+
+.logo-layer-appear-3 {
+    animation: logoScaleAppear 0.25s ease-out 0.12s forwards;
+}
+
+.logo-layer-appear-2 {
+    animation: logoScaleAppear 0.25s ease-out 0.16s forwards;
+}
+
+.logo-layer-appear-1 {
+    animation: logoScaleAppear 0.25s ease-out 0.2s forwards;
+}
+
+.logo-ball-drop {
+    animation: logoBallDrop 1.0s ease-out 0.35s forwards;
+}
+
+.logo-path-fade {
+    animation: logoPathFade 0.3s ease-out 1.8s forwards;
+}
+
+.bet-button-appear {
+    animation: logoScaleAppear 0.25s ease-out 1.4s forwards;
+}
+
+/* Animation keyframes */
+@keyframes logoScaleAppear {
+    0% { 
+        opacity: 0; 
+        transform: scale(1.5); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+}
+
+@keyframes logoBallDrop {
+    0% { 
+        opacity: 1; 
+        transform: translateY(-50px); 
+        animation-timing-function: ease-in;
+    }
+    35% { 
+        transform: translateY(0px);
+        animation-timing-function: ease-out;
+    }
+    55% { 
+        transform: translateY(-15px);
+        animation-timing-function: ease-in;
+    }
+    70% { 
+        transform: translateY(0px);
+        animation-timing-function: ease-out;
+    }
+    80% { 
+        transform: translateY(-6px);
+        animation-timing-function: ease-in;
+    }
+    88% { 
+        transform: translateY(0px);
+        animation-timing-function: ease-out;
+    }
+    94% { 
+        transform: translateY(-2px);
+        animation-timing-function: ease-in;
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0px); 
+    }
+}
+
+@keyframes logoPathFade {
+    0% { 
+        opacity: 0; 
+    }
+    100% { 
+        opacity: 1; 
+    }
+}
+
+/* Additional animation classes for future use */
+.logo-animate-bounce {
+    animation: logo-bounce 0.5s ease-in-out;
+}
+
+.logo-animate-glow {
+    animation: logo-glow 1s ease-in-out infinite alternate;
+}
+
+.logo-animate-spin {
+    animation: logo-spin 2s linear infinite;
+}
+
+@keyframes logo-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes logo-glow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2) saturate(1.2); }
+}
+
+@keyframes logo-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ball flash animation for peg collisions */
+.logo-ball-flash {
+    animation: logoBallFlash 0.2s ease-out;
+}
+
+@keyframes logoBallFlash {
+    0% { 
+        opacity: 1;
+        filter: brightness(1) saturate(1);
+    }
+    50% { 
+        opacity: 1;
+        filter: brightness(2.5) saturate(1.5);
+    }
+    100% { 
+        opacity: 1;
+        filter: brightness(1) saturate(1);
+    }
+}
+
+/* Layers flash animation for bin hits */
+.logo-layers-flash-1 {
+    animation: logoLayerFlash 0.08s ease-out 0s;
+}
+
+.logo-layers-flash-2 {
+    animation: logoLayerFlash 0.08s ease-out 0.08s;
+}
+
+.logo-layers-flash-3 {
+    animation: logoLayerFlash 0.08s ease-out 0.16s;
+}
+
+.logo-layers-flash-4 {
+    animation: logoLayerFlash 0.08s ease-out 0.24s;
+}
+
+.logo-layers-flash-5 {
+    animation: logoLayerFlash 0.08s ease-out 0.32s;
+}
+
+.logo-layers-flash-6 {
+    animation: logoLayerFlash 0.08s ease-out 0.40s;
+}
+
+@keyframes logoLayerFlash {
+    0% { 
+        filter: brightness(1) saturate(1);
+    }
+    50% { 
+        filter: brightness(2.0) saturate(1.3);
+    }
+    100% { 
+        filter: brightness(1) saturate(1);
+    }
+}
