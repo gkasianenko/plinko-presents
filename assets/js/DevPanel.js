@@ -101,7 +101,7 @@ export class DevPanel {
     const params = new URLSearchParams(window.location.search);
     let gameMode = "";
 
-    if (import.meta.env.GAME_MODE) {
+    if (import.meta.env) {
       gameMode = import.meta.env.GAME_MODE;
     }
 
