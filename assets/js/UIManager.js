@@ -3,7 +3,12 @@ import WinModalManager from "./WinModalManager.js";
 import TargetWinsCalculator from "./TargetWinsCalculator.js";
 import { animateNumber, CURRENCY } from "./utils.js";
 import { startFountain, stopFountain } from "./CoinFountain.js";
-import { playCountSound, playPushAppSound, playPushMessageSound, playBigWinSound } from "./base64sounds.js";
+import {
+  playCountSound,
+  playPushAppSound,
+  playPushMessageSound,
+  playBigWinSound,
+} from "./base64sounds.js";
 
 class UIManager {
   constructor(gameInstance) {
@@ -26,6 +31,8 @@ class UIManager {
     this.firstWin = 2173.33;
     this.secondWin = 2173.33;
     this.thirdWin = 2173.34;
+    this.wonPresentAmount = 1500;
+    this.randomWonPresentIndex = Math.floor(Math.random() * 3);
 
     this.ballsInBinsCount = 0;
 
@@ -58,7 +65,7 @@ class UIManager {
 
     this.createDebugInput();
     this.setupBetButton();
-    this.setupRecieveButton();
+    this.setupPresentsMinigame();
 
     this.winModalManager = new WinModalManager(this.game);
     this.winModalManager.initialize();
@@ -93,7 +100,7 @@ class UIManager {
       this.startGameApp();
     }, 5000);
 
-    //Закрываем приложение банкинга и вызываем финальное окно 
+    //Закрываем приложение банкинга и вызываем финальное окно
     setTimeout(() => {
       this.hideGameApp();
     }, 9000);
@@ -161,7 +168,6 @@ class UIManager {
     //Анимация прибавления цифр к общему счету банкинга, засинхронена с анимациями появления нотификаций в верстке выше
     //поэтому, если изменили тайминги в вертске, тут тоже надо менять
     setTimeout(() => {
-
       //проигрываем звук пуша банкинга
       playPushAppSound();
 
@@ -270,13 +276,13 @@ class UIManager {
     if (config.targetWins > 0 && this.game.binsManager) {
       console.debug(
         "🧠 Initializing target bins array for win target:",
-        config.targetWins
+        config.targetWins,
       );
 
       setTimeout(() => {
         const targetWinsCalculator = new TargetWinsCalculator(
           this.game,
-          this.game.binsManager
+          this.game.binsManager,
         );
         const success = targetWinsCalculator.applyTargetDistribution();
 
@@ -403,7 +409,7 @@ class UIManager {
       if (self.throwsLeft <= 0) {
         console.debug(
           "🚫 User ran out of balls - throwsLeft:",
-          self.throwsLeft
+          self.throwsLeft,
         );
         return;
       }
@@ -411,7 +417,7 @@ class UIManager {
       const betCost = self.ballCount * self.ballCost;
       if (self.balance < betCost) {
         console.debug(
-          `Insufficient funds for bet: required ${betCost}, available ${self.balance}`
+          `Insufficient funds for bet: required ${betCost}, available ${self.balance}`,
         );
         return;
       }
@@ -471,7 +477,7 @@ class UIManager {
       }
 
       console.debug(
-        `Bet placed: ${betCost} (${self.ballCount} balls at ${self.ballCost})`
+        `Bet placed: ${betCost} (${self.ballCount} balls at ${self.ballCost})`,
       );
       console.debug(`New balance (under the hood): ${self.balance}`);
       console.debug(`Balls remaining: ${self.throwsLeft}`);
@@ -493,7 +499,7 @@ class UIManager {
             targetBins = inputValues;
             console.debug(
               "Using target bins from debug input:",
-              targetBins.map((i) => i + 1).join(", ")
+              targetBins.map((i) => i + 1).join(", "),
             );
           }
         }
@@ -511,14 +517,14 @@ class UIManager {
             console.debug(
               `Taking target bin at index ${
                 self.planTargetBinsIndex - 1
-              }: ${next}`
+              }: ${next}`,
             );
             if (typeof next === "number") {
               targetBins.push(next);
             }
           } else {
             console.debug(
-              `⚠️ planTargetBinsIndex ${self.planTargetBinsIndex} exceeds array length ${config.planTargetsBins.length}`
+              `⚠️ planTargetBinsIndex ${self.planTargetBinsIndex} exceeds array length ${config.planTargetsBins.length}`,
             );
             break;
           }
@@ -526,7 +532,7 @@ class UIManager {
 
         console.debug(
           "Using planned bins from planTargetsBins:",
-          targetBins.map((i) => i + 1).join(", ")
+          targetBins.map((i) => i + 1).join(", "),
         );
         console.debug("Current planTargetBinsIndex:", self.planTargetBinsIndex);
       }
@@ -563,47 +569,69 @@ class UIManager {
     }
   }
 
-  setupRecieveButton() {
-    const recieveButton = document.getElementById("recieve-button");
 
-    if (!recieveButton) {
-      console.error("Recieve button not found, cannot setup");
-      return;
-    }
+  setupPresentsMinigame() {
+    const recieveElement = document.getElementById("plinko-recieve");
 
-    const newButton = recieveButton.cloneNode(true);
-    recieveButton.parentNode.replaceChild(newButton, recieveButton);
+    const presentsSet = document.getElementById("plinko-present-set");
 
-    newButton.className = "plinko-recieve__btn";
+    if (!presentsSet) return;
 
-    // newButton.textContent = `Bet (${this.throwsLeft})`;
-    newButton.textContent = `RECIEVE`;
-
-    if (this.throwsLeft <= 0 || config.autoMode || this.isLogoAnimating()) {
-      newButton.disabled = true;
-      newButton.style.opacity = "0.5";
-      newButton.style.cursor = "not-allowed";
-    }
+    const presents = presentsSet.querySelectorAll(
+      '[data-item="plinko-present"]',
+    );
 
     const self = this;
 
-    function handleRecieveClick() {
-      const recieveElement = document.getElementById("plinko-recieve");
+    const presentIndex = self.randomWonPresentIndex;
+    const wonPresentAmount = self.wonPresentAmount;
 
-      const recieveAmount = 1500;
-
-      self.addWin(recieveAmount);
+    function handleRecieve() {
+      self.addWin(wonPresentAmount);
       self.previousBalance = self.balance;
 
       recieveElement.classList.add("hide");
       self.showPlinkoGame();
     }
 
-    // Добавляем обработчики для touch и click событий только в обычном режиме
-    if (!config.autoMode) {
-      newButton.addEventListener("click", handleRecieveClick);
-      // newButton.addEventListener("touchend", handleRecieveClick);
-    }
+    presents.forEach((present, index) => {
+      const rewardText = present.querySelector('[data-id="present-reward"]');
+
+      if (presentIndex === index) {
+        rewardText.dataset.text = `€${this.wonPresentAmount}`;
+        rewardText.textContent = `€${this.wonPresentAmount}`;
+      }
+
+      present.addEventListener(
+        "click",
+        function handlePresentClick() {
+
+          present.removeEventListener('click', handlePresentClick);
+          
+          this.classList.remove("animate");
+
+          void this.offsetWidth;
+
+          this.classList.add("animate");
+
+
+          setTimeout(() => {
+            if (presentIndex === index) {
+              this.classList.add("win");
+            } else {
+              this.classList.add("loose");
+            }
+          }, 1000);
+
+          setTimeout(() => {
+            this.classList.remove("animate");
+            if (presentIndex === index) {
+              handleRecieve();
+            }
+          }, 2000);
+        },
+      ), { once: true };
+    });
   }
 
   getBallCount() {
@@ -665,7 +693,7 @@ class UIManager {
     this.ballsInBinsCount++;
 
     console.debug(
-      `🔢 Ball in bin! Current counter: ${this.ballsInBinsCount}, throws left: ${this.throwsLeft}`
+      `🔢 Ball in bin! Current counter: ${this.ballsInBinsCount}, throws left: ${this.throwsLeft}`,
     );
 
     const winTextElement = document.getElementById("wins-display");
@@ -706,7 +734,7 @@ class UIManager {
     // }
 
     console.debug(
-      `🎯 WINS-DISPLAY UPDATE: winsEUR=${this.winsEUR}, winsFS=${this.winsFS}, newText="${newText}"`
+      `🎯 WINS-DISPLAY UPDATE: winsEUR=${this.winsEUR}, winsFS=${this.winsFS}, newText="${newText}"`,
     );
 
     if (winTextElement.textContent !== newText) {

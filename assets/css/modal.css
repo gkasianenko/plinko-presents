@@ -52,6 +52,7 @@
 }
 
 .win-modal__body .wins-container {
+  position: static;
   width: 60vw;
   max-width: 520px;
   height: calc(60vw * 0.19);

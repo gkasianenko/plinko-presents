@@ -5,6 +5,8 @@ import { LogoAnimationManager } from "./LogoAnimationManager.js";
 import "./preventZoom.js";
 
 window.addEventListener("load", () => {
+
+
   console.debug("🌐 Page fully loaded, initializing game");
 
   // Apply URL settings before initialization
@@ -51,3 +53,5 @@ window.addEventListener("load", () => {
 
   console.debug("✅ Game created after full load");
 });
+
+

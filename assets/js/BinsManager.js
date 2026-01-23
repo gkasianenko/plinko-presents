@@ -476,7 +476,7 @@ class BinsManager {
       }
 
       // Запускаем анимацию в нужном порядке
-      console.log(
+      console.debug(
         "Animation order:",
         animationOrder.map((bin) => parseInt(bin.dataset.binIndex))
       );

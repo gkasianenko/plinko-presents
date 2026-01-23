@@ -48,7 +48,9 @@
     border-color: #00ff00;
   }
   100% {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.3);
+    box-shadow:
+      0 0 20px rgba(0, 255, 0, 0.6),
+      0 0 30px rgba(0, 255, 0, 0.3);
     border-color: #33ff33;
   }
 }
@@ -89,11 +91,30 @@
   }
 }
 
-@media (orientation: landscape) and (max-width: 768px) {
-    .bet-button {
-    width: 120px;
-    height: 120px;
-    font-size: 33px;
+@media (orientation: landscape) and (max-height: 600px) {
+  .bet-button {
+    width: 75px;
+    height: 75px;
+    font-size: 20px;
+  }
+
+  .plinko-hole {
+    width: 15px;
+    height: 15px;
+    top: 7px;
+  }
+
+  .game-button .game-finale__hand {
+    width: 30px;
+    top: 50px;
+  }
+
+  .bin {
+    height: 20px;
+  }
+
+  .bin-label-new {
+    top: 3px;
   }
 }
 
@@ -103,7 +124,7 @@
     width: 100px;
     height: 100px;
 
-            font-size: 20px;
+    font-size: 20px;
     border-radius: 7px;
   }
 }

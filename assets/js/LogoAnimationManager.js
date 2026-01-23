@@ -102,7 +102,6 @@ export class LogoAnimationManager {
         // Notify UI that intro animation is complete
         if (window.game && window.game.uiManager) {
             window.game.uiManager.setupBetButton();
-            window.game.uiManager.setupRecieveButton();
         }
         
         this.logoContainers.forEach(container => {

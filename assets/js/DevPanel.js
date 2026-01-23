@@ -95,7 +95,7 @@ export class DevPanel {
     const url = new URL(window.location);
     url.searchParams.set("mode", newMode);
 
-    console.log("Applying new mode:", newMode);
+    console.debug("Applying new mode:", newMode);
     window.location.href = url.toString();
   }
 
@@ -111,7 +111,7 @@ export class DevPanel {
       mode: params.get("mode") || gameMode || "click",
     };
 
-    console.log("Dev Settings:", settings);
+    console.debug("Dev Settings:", settings);
     return settings;
   }
 
@@ -121,7 +121,7 @@ export class DevPanel {
     // Apply settings to config
     config.autoMode = settings.mode === "auto";
 
-    console.log("Applied URL settings to config:", settings);
+    console.debug("Applied URL settings to config:", settings);
 
     return settings;
   }

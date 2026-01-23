@@ -126,7 +126,8 @@ canvas {
   background-image: url("../images/score-btn.webp");
   background-repeat: no-repeat;
   background-size: contain;
-  position: relative;
+  position: fixed;
+  top: 0;
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -275,12 +276,11 @@ canvas {
 
 .plinko-recieve {
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
-  height: 250px;
-  background-image: url("../images/welcome-bg.webp");
+  width: 100%;
+  height: 87%;
   background-repeat: no-repeat;
   background-size: contain;
   transition: var(--transition-default);
@@ -295,7 +295,7 @@ canvas {
 .plinko-recieve__amount {
   position: relative;
   top: 40px;
-  font-size: 90px;
+  font-size: 57px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -303,7 +303,188 @@ canvas {
   padding: 7px 20px;
 
   transition: var(--transition-default);
-  color: #ffd104;
+  transition: var(--transition-default);
+
+  background: linear-gradient(
+    to bottom,
+    #ffd104 0%,
+    #ffd104 70%,
+    #ff6401 90%,
+    #ff6401 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.plinko-recieve__amount::after {
+  padding: 7px 20px;
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes vortexEffect {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0) rotate(1080deg);
+  }
+  55% {
+    transform: scale(0) rotate(1260deg);
+  }
+  85% {
+    transform: scale(1.1) rotate(1440deg);
+  }
+  100% {
+    transform: scale(1) rotate(1440deg);
+  }
+}
+
+.plinko-present-set {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.plinko-present-set .plinko-present:nth-child(even) {
+  position: relative;
+  top: -60px;
+  left: -100px;
+}
+
+.plinko-present-set .plinko-present:nth-child(odd) {
+  position: relative;
+  top: -140px;
+  left: 100px;
+}
+
+.plinko-present-set .plinko-present:first-child {
+  position: relative;
+  top: 0;
+  left: 100px;
+}
+
+.plinko-present {
+  width: 180px;
+  height: 200px;
+  cursor: pointer;
+  user-select: none;
+  transform: rotate(0deg);
+  flex-shrink: 0;
+}
+
+.plinko-present.animate {
+  animation: vortexEffect 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.plinko-present__background {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+}
+
+.plinko-present__bottom img {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.plinko-present__top img {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 60px;
+  z-index: 2;
+}
+
+.plinko-present__reward-wrapper {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.plinko-present__reward {
+  font-family: var(--luckiest);
+  font-size: 66px;
+  font-weight: 400;
+
+  background: linear-gradient(
+    to bottom,
+    #ffd104 0%,
+    #ffd104 70%,
+    #ff6401 90%,
+    #ff6401 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.plinko-present__reward::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+  /* background: inherit; */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plinko-present__hand {
+  width: 45px;
+  position: absolute;
+  right: 0;
+  top: 140px;
+  animation: shakeAndScale 0.5s ease-in-out infinite;
+}
+
+.plinko-present.win .plinko-present__hand,
+.plinko-present.loose .plinko-present__hand {
+  display: none;
+}
+
+.plinko-present.win .plinko-present__reward-wrapper {
+  display: flex;
+  top: -27px;
+  z-index: 3;
+}
+
+.plinko-present.win .plinko-present__top img {
+  left: 90px;
+  transform: rotate(40deg);
+  top: 50px;
+}
+
+.plinko-present.loose .plinko-present__top img {
+  top: -75px;
 }
 
 .plinko-recieve__text {
@@ -313,7 +494,11 @@ canvas {
   justify-content: center;
   align-items: center;
   font-size: 48px;
-  text-shadow: 0px 1px 0 #000, 1px 2px 0 #000, 0px 1px 0 #000, 0px 0px 0 #000;
+  text-shadow:
+    0px 1px 0 #000,
+    1px 2px 0 #000,
+    0px 1px 0 #000,
+    0px 0px 0 #000;
   color: #fff;
   text-align: center;
 }
@@ -898,7 +1083,7 @@ canvas {
   }
 
   .plinko-field {
-    width: 80%;
+    width: 90%;
     height: 95dvh;
   }
 
@@ -948,6 +1133,7 @@ canvas {
 
   /* Адаптация стилей wins-container в landscape */
   .wins-container {
+    margin-top: 30px;
     margin-bottom: 30px;
     margin-top: 0;
     width: 340px;
@@ -984,8 +1170,12 @@ canvas {
   }
 
   .plinko-recieve {
-    width: 400px;
-    height: 210px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
   }
 
   .plinko-recieve__text {
@@ -1037,7 +1227,7 @@ canvas {
   }
 }
 
-@media (orientation: landscape) and (max-height: 759px) {
+@media (orientation: landscape) and (max-height: 800px) {
   .game-app__accounts {
     display: none;
   }
@@ -1081,6 +1271,42 @@ canvas {
 
   .game-finale__background {
     bottom: -85%;
+  }
+
+  .plinko-recieve__amount {
+    font-size: 50px;
+  }
+
+  .plinko-present-set {
+    margin-top: 80px;
+  }
+
+  .plinko-present {
+    width: 140px;
+    height: 160px;
+  }
+
+  .plinko-present.loose .plinko-present__top img {
+    top: -40px;
+  }
+
+  .plinko-present.win .plinko-present__top img {
+    left: 65px;
+    transform: rotate(40deg);
+    top: 35px;
+  }
+
+  .plinko-present__reward {
+    font-size: 51px;
+  }
+
+  .plinko-present.win .plinko-present__reward-wrapper {
+    top: -20px;
+  }
+
+  .plinko-present__hand {
+    width: 35px;
+    top: 110px;
   }
 }
 
@@ -1144,6 +1370,7 @@ canvas {
     padding: 5px 0;
   }
 }
+
 @media (orientation: landscape) and (max-height: 400px) and (max-width: 850px) {
   .game-container {
     flex-direction: column;
@@ -1296,19 +1523,252 @@ canvas {
     height: 23%;
     gap: 15px;
   }
+
+  .wins-container {
+    margin: 0;
+    transform: scale(0.8);
+  }
+
+  .plinko-recieve {
+    top: 61%;
+  }
+
+  .plinko-recieve__amount {
+    font-size: 33px;
+  }
+
+  .plinko-present-set {
+    margin-top: 120px;
+    flex-direction: row;
+    gap: 80px;
+  }
+
+  .plinko-present-set .plinko-present:first-child {
+    position: static;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(even) {
+    position: static;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(odd) {
+    position: static;
+  }
+
+      .game-push.show {
+    top: 30px;
+
+}
+
+.game-push {
+    width: 80%;
+    max-width: 260px;
+}
 }
 
 /* Медиа-запрос для очень маленьких экранов в landscape */
 @media (max-height: 400px) {
   .wins-container {
-    margin-top: 5px;
+    margin-top: 0px;
+    margin-bottom: -10px;
+    transform: scale(0.7);
   }
 
   .wins-display {
-    font-size: 20px;
+    font-size: 25px;
     /* padding: 2px 4px; */
     min-width: fit-content;
     /* border: 2px solid #00ff00; */
+  }
+
+  .plinko-recieve {
+    top: 64%;
+  }
+
+  .plinko-recieve__amount {
+    font-size: 28px;
+  }
+
+  .plinko-present-set {
+    margin-top: 45px;
+    flex-direction: row;
+    gap: 60px;
+  }
+
+  .plinko-present {
+    width: 115px;
+    height: 135px;
+  }
+
+  .plinko-present__hand {
+    width: 30px;
+    top: 100px;
+  }
+
+  .plinko-present__top img {
+    bottom: 40px;
+  }
+
+  .plinko-present__background {
+    bottom: 30px;
+  }
+
+  .plinko-present.loose .plinko-present__top img {
+    top: -25px;
+  }
+
+  .plinko-present__reward {
+    font-size: 42px;
+  }
+
+  .plinko-present.win .plinko-present__reward-wrapper {
+    top: -10px;
+  }
+
+  .plinko-present.win .plinko-present__top img {
+    left: 47px;
+    transform: rotate(40deg);
+    top: 34px;
+  }
+
+  .game-finale__hand {
+    width: 30px;
+
+    top: 20px;
+  }
+
+  .game-finale__button {
+    margin-top: 20px;
+    height: 40px;
+    font-size: 25px;
+    width: 176px;
+  }
+
+  .game-finale__title-win {
+    font-size: 32px;
+  }
+
+  .game-finale__title-word {
+    font-size: 28px;
+  }
+
+  .game-finale__logo {
+    width: 100px;
+  }
+
+  .game-finale {
+    margin-top: 0px;
+  }
+
+  .game-finale__background {
+    bottom: -165%;
+  }
+
+  .win-modal__image {
+    width: 30vw !important;
+  }
+
+  .win-modal__body .wins-container {
+    width: 40vw !important;
+    height: calc(40vw * 0.19) !important;
+  }
+
+  .game-app__date {
+
+    font-size: 9px;
+}
+
+.game-app__notification-info {
+  font-size: 12px;
+}
+
+.game-app__notification-logo {
+        width: 30px;
+    }
+
+        .game-app__notifications {
+       margin-top: 70px;
+        height: 170px;
+    }
+
+    .game-app__more {
+
+    bottom: 7px;
+
+    font-size: 10px;
+}
+
+    .game-app__notification {
+        padding: 8px;
+    }
+
+    .game-app__notification .right {
+      margin-right: 10px;
+    }
+    .game-app__notification .right span{
+      font-size:14px;
+    }
+
+    .game-app__controls {
+        display: none;
+    }
+
+        .game-app__top {
+        gap: 10px;
+    }
+
+    .game-push.show {
+    top: 20px;
+
+}
+
+.game-push {
+    width: 80%;
+    max-width: 220px;
+}
+}
+
+@media (max-height: 320px) {
+  .game-finale__background {
+    bottom: -220%;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 600px) {
+  .plinko-recieve__amount {
+    font-size: 45px;
+  }
+
+  .plinko-present-set {
+    margin-top: 90px;
+  }
+
+  .plinko-present {
+    width: 140px;
+    height: 160px;
+  }
+
+  .plinko-present.loose .plinko-present__top img {
+    top: -40px;
+  }
+
+  .plinko-present.win .plinko-present__top img {
+    left: 65px;
+    transform: rotate(40deg);
+    top: 35px;
+  }
+
+  .plinko-present__reward {
+    font-size: 51px;
+  }
+
+  .plinko-present.win .plinko-present__reward-wrapper {
+    top: -20px;
+  }
+
+  .plinko-present__hand {
+    width: 35px;
+    top: 110px;
   }
 }
 
@@ -1325,7 +1785,8 @@ canvas {
   .wins-container {
     width: 350px;
     height: 70px;
-    margin-top: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   .wins-result {
@@ -1352,11 +1813,11 @@ canvas {
 
   .plinko-field {
     height: 100vh;
+    margin-top: 60px;
   }
 
   .plinko-recieve {
-    width: 350px;
-    height: 185px;
+    top: 49%;
   }
 
   .plinko-recieve__btn {
@@ -1372,7 +1833,38 @@ canvas {
 
   .plinko-recieve__amount {
     top: 38px;
-    font-size: 60px;
+    font-size: 40px;
+  }
+
+  .plinko-present-set {
+    margin-top: 80px;
+  }
+
+  .plinko-present {
+    width: 120px;
+    height: 140px;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(even) {
+    position: relative;
+    top: -20px;
+    left: -65px;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(odd) {
+    position: relative;
+    top: -40px;
+    left: 65px;
+  }
+
+  .plinko-present-set .plinko-present:first-child {
+    position: relative;
+    top: 0;
+    left: 65px;
+  }
+
+  .plinko-present__reward {
+    font-size: 44px;
   }
 }
 
