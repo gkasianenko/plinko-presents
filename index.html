@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="{{lang}}">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -12,7 +12,7 @@
       content="black-translucent"
     />
     <meta name="format-detection" content="telephone=no" />
-    <title>Plinko Game</title>
+    <title>{{title}}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,28 +25,34 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/base-presents.css" />
   </head>
   <body>
-    <div class="main-container">
+   <div class="main-container">
       <div class="game-container">
         <div class="plinko-field hide-game" id="plinko-field">
           <div id="wins-container" class="wins-container">
             <div class="wins-wrapper">
               <div class="wins-info">
-                <span class="wins-desc">BONUS</span>
-                <span class="wins-desc">GAME</span>
+                <span class="wins-desc">{{bonusGame}}</span>
               </div>
               <div class="wins-result">
-                <span id="wins-display" class="wins-display">€20</span>
+                <span id="wins-display" class="wins-display">{{currency}}20</span>
               </div>
             </div>
           </div>
           <div class="plinko-recieve" id="plinko-recieve">
             <span
               class="plinko-recieve__amount"
-              data-text="Where is the €1500 bonus hidden?"
-              >Where is the €1500 bonus hidden?</span
+              data-text="{{whereIs}} {{currency}}1500 {{bonusHidden}}"
+              >{{whereIs}} {{currency}}1500 {{bonusHidden}}</span
             >
             <div class="plinko-present-set" id="plinko-present-set">
               <div class="plinko-present" data-item="plinko-present">
@@ -117,17 +123,17 @@
               </div>
             </div>
           </div>
-          <div class="plinko-hole"></div>
+           <div class="plinko-hole"></div>
           <div id="plinko-game"></div>
           <div id="bins-container" class="bins-container"></div>
 
           <div class="game-controls">
             <div class="game-button">
-              <button id="bet-button" class="bet-button">PLAY</button>
+              <button id="bet-button" class="bet-button">{{play}}</button>
               <img
                 class="game-finale__hand"
                 id="bet-button-hand"
-                src="./assets/images/plinko-hand.webp"
+                src="/assets/images/plinko-hand.webp"
               />
             </div>
           </div>
@@ -136,89 +142,301 @@
           <div class="game-app__wrapper">
             <div class="game-app__top">
               <div class="game-app__search">
-                <img src="./assets/images/app-search.webp" />
+                <div class="revolut-search">
+                  <div class="revolut-search__left">
+                    <div class="revolut-search__user">
+                      <span>PP</span>
+                    </div>
+                  </div>
+                  <div class="revolut-search__bar">
+                    <img class="revolut-search"
+                    src="/assets/images/revolut-search.webp"
+                    />
+                    <span>{{search}}</span>
+                  </div>
+                  <div class="revolut-search__right">
+                    <div class="revolut-search__icon">
+                      <img class="revolut-stats"
+                      src="/assets/images/revolut-stats.webp"
+                      />
+                    </div>                   
+                    <div class="revolut-search__icon">
+                      <img class="revolut-cards"
+                      src="/assets/images/revolut-cards.webp"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="nab-search">
+                  <div class="nab-search__left">
+                    <img
+                      class="nab-search__back"
+                      src="/assets/images/nab-bank-back.webp"
+                    />
+                    <span>{{myCreditCard}}</span>
+                  </div>
+                  <div class="nab-search__right">
+                    <img
+                      class="nab-search__chat"
+                      src="/assets/images/nab-bank-chat.webp"
+                    />
+                    <img
+                      class="nab-search__reverse"
+                      src="/assets/images/nab-bank-reverse.webp"
+                    />
+                  </div>
+                </div>
               </div>
               <div class="game-app__balance">
-                <span>Main • EUR</span>
-                <span id="app-amount" class="game-app__amount">€0</span>
-                <img
-                  class="game-app__accounts"
-                  src="./assets/images/app-accounts.webp"
-                />
+                <span class="nab-info">{{balance}}</span>
+                <span class="revolut-info">{{mainPage}} • {{currencyType}}</span>
+                <span id="app-amount" class="game-app__amount">{{currency}}0</span>
+                <div class="game-app__accounts">
+                  <span>{{accounts}}</span>
+                </div>
               </div>
             </div>
             <div class="game-app__bottom">
               <div class="game-app__controls">
-                <img src="./assets/images/app-controls.webp" />
+                <div class="revolut-controls">
+                  <div class="revolut-controls__item">
+                    <div class="revolut-controls__icon">
+                      <img
+                        class="revolut-add"
+                        src="/assets/images/revolut-add.webp"
+                      />
+                    </div>
+                    <div class="revolut-controls__text">
+                      <span>{{addMoney}}</span>
+                    </div>
+                  </div>
+                  <div class="revolut-controls__item">
+                    <div class="revolut-controls__icon">
+                      <img
+                        class="revolut-add"
+                        src="/assets/images/revolut-move.webp"
+                      />
+                    </div>
+                    <div class="revolut-controls__text">
+                      <span>{{move}}</span>
+                    </div>
+                  </div>
+                  <div class="revolut-controls__item">
+                    <div class="revolut-controls__icon">
+                      <img
+                        class="revolut-add"
+                        src="/assets/images/revolut-details.webp"
+                      />
+                    </div>
+                    <div class="revolut-controls__text">
+                      <span>{{details}}</span>
+                    </div>
+                  </div>
+                  <div class="revolut-controls__item">
+                    <div class="revolut-controls__icon">
+                      <img
+                        class="revolut-add"
+                        src="/assets/images/revolut-more.webp"
+                      />
+                    </div>
+                    <div class="revolut-controls__text">
+                      <span>{{more}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="nab-controls">
+                  <div
+                    class="nab-controls__button nab-controls__button--pay"
+                  >
+                    <div class="nab-controls__icon">
+                      <img
+                        class="nab-icon-pay"
+                        src="/assets/images/nab-controls-pay.webp"
+                      />
+                    </div>
+                    <div class="nab-controls__text">{{pay}}</div>
+                  </div>
+                  <div
+                    class="nab-controls__button"
+                  >
+                    <div class="nab-controls__icon">
+                      <img
+                        class="nab-icon-details"
+                        src="/assets/images/nab-controls-details.webp"
+                      />
+                    </div>
+                    <div class="nab-controls__text">{{details}}</div>
+                  </div>
+                  <div
+                    class="nab-controls__button"
+                  >
+                    <div class="nab-controls__icon">
+                      <img
+                        class="nab-icon-statements"
+                        src="/assets/images/nab-controls-statements.webp"
+                      />
+                    </div>
+                    <div class="nab-controls__text">{{statements}}</div>
+                  </div>
+                </div>
               </div>
+              <div class="game-app__notifications-wrapper">
+                <div class="game-app__more-wrapper">
+                  <img class="nab-search" src="/assets/images/nab-search.webp" />
+                  <span class="game-app__more">{{seeAll}}</span>
+                </div>
               <div class="game-app__notifications" id="app-notifications">
                 <div class="game-app__notification">
                   <div class="left">
                     <div class="game-app__notification-logo">
-                      <img src="./assets/images/plinko-small.webp" />
+                      <img src="/assets/images/plinko-small.webp" />
                     </div>
                     <div class="game-app__notification-info">
                       <span>Plinko</span>
-                      <span class="game-app__date">Today, 9:18</span>
+                      <span class="game-app__date">{{today}}, 9:18</span>
                     </div>
                   </div>
                   <div class="right">
-                    <span>+2173.33€</span>
+                    <span>1273.33{{currency}}</span>
                   </div>
                 </div>
                 <div class="game-app__notification">
                   <div class="left">
                     <div class="game-app__notification-logo">
-                      <img src="./assets/images/plinko-small.webp" />
+                      <img src="/assets/images/plinko-small.webp" />
                     </div>
                     <div class="game-app__notification-info">
                       <span>Plinko</span>
-                      <span class="game-app__date">Today, 9:17</span>
+                      <span class="game-app__date">{{today}}, 9:17</span>
                     </div>
                   </div>
                   <div class="right">
-                    <span>+2173.33€</span>
+                    <span>1273.33{{currency}}</span>
                   </div>
                 </div>
                 <div class="game-app__notification">
                   <div class="left">
                     <div class="game-app__notification-logo">
-                      <img src="./assets/images/plinko-small.webp" />
+                      <img src="/assets/images/plinko-small.webp" />
                     </div>
                     <div class="game-app__notification-info">
                       <span>Plinko</span>
-                      <span class="game-app__date">Today, 9:17</span>
+                      <span class="game-app__date">{{today}}, 9:17</span>
                     </div>
                   </div>
                   <div class="right">
-                    <span>+2173.33€</span>
+                    <span>1273.33{{currency}}</span>
                   </div>
                 </div>
-                <span class="game-app__more">See all</span>
+              </div>
               </div>
             </div>
             <div class="game-app__nav">
-              <img src="./assets/images/app-nav.webp" />
+              <div class="revolut-nav">
+                <div class="revolut-nav__item home">
+                  <div class="revolut-nav__icon">
+                    <img class="revolut-home" src="/assets/images/revolut-home.webp" />
+                  </div>
+                  <div class="revolut-nav__text">
+                    <span>{{home}}</span>
+                  </div>
+                </div>
+                <div class="revolut-nav__item">
+                  <div class="revolut-nav__icon">
+                    <img class="revolut-invest" src="/assets/images/revolut-invest.webp" />
+                  </div>
+                  <div class="revolut-nav__text">
+                    <span>{{invest}}</span>
+                  </div>
+                </div>
+                <div class="revolut-nav__item">
+                  <div class="revolut-nav__icon">
+                    <img class="revolut-payments" src="/assets/images/revolut-payments.webp" />
+                  </div>
+                  <div class="revolut-nav__text">
+                    <span>{{payments}}</span>
+                  </div>
+                </div>
+                <div class="revolut-nav__item">
+                  <div class="revolut-nav__icon">
+                    <img class="revolut-crypto" src="/assets/images/revolut-crypto.webp" />
+                  </div>
+                  <div class="revolut-nav__text">
+                    <span>{{crypto}}</span>
+                  </div>
+                </div>
+                <div class="revolut-nav__item">
+                  <div class="revolut-nav__icon">
+                    <img class="revolut-rev" src="/assets/images/revolut-rev.webp" />
+                  </div>
+                  <div class="revolut-nav__text">
+                    <span>Rev{{points}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="nab-nav">
+                <div class="nab-nav__element accounts">
+                   <img
+                        class="nab-nav__element-img accounts"
+                        src="/assets/images/nab-nav-accounts.webp"
+                      />
+                  <span class="nab-nav__element-text">
+                    {{accounts}}
+                  </span>
+                </div>
+                <div class="nab-nav__element">
+                   <img
+                        class="nab-nav__element-img transfer"
+                        src="/assets/images/nab-nav-transfer.webp"
+                      />
+                  <span class="nab-nav__element-text">
+                    {{transferPay}}
+                  </span>
+                </div>
+                <div class="nab-nav__element cards">
+                   <img
+                        class="nab-nav__element-img cards"
+                        src="/assets/images/nab-nav-cards.webp"
+                      />
+                  <span class="nab-nav__element-text">
+                    {{cards}}
+                  </span>
+                </div>
+                <div class="nab-nav__element more">
+                   <img
+                        class="nab-nav__element-img more"
+                        src="/assets/images/nab-nav-more.webp"
+                      />
+                  <span class="nab-nav__element-text">
+                    {{more}}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="game-finale hide" id="game-finale">
           <div class="game-finale__wrapper">
             <div class="game-finale__logo">
-              <img src="./assets/images/plinko-logo.webp" />
+              <img src="/assets/images/plinko-logo.webp" />
             </div>
             <div class="game-finale__text">
               <h1 class="game-finale__title">
-                <span class="game-finale__title-word">BONUS</span>
-                <span class="game-finale__title-win">€1500+250</span>
-                <span>free spins </span>
+                <span class="game-finale__title-word">{{bonus}}</span>
+                <span class="game-finale__title-win">{{currency}}1500+250</span>
+                <span>{{freeSpins}}</span>
               </h1>
             </div>
             <div class="game-finale__install">
-              <a class="game-finale__button" onclick="FbPlayableAd.onCTAClick()"> INSTALL </a>
+              <a
+                class="game-finale__button"
+                onclick="FbPlayableAd.onCTAClick()"
+              >
+                {{install}}
+              </a>
               <img
                 class="game-finale__hand"
-                src="./assets/images/plinko-hand.webp"
+                src="/assets/images/plinko-hand.webp"
               />
             </div>
           </div>
@@ -228,7 +446,24 @@
       </div>
       <div class="game-push" id="game-push">
         <div class="game-push__wrapper">
-          <img src="./assets/images/message-6520.webp" />
+          <div class="game-push__inner">
+            <div class="game-push__inner-left">
+              <div class="game-push__inner-logo">
+                <img class="nab-logo" src="/assets/images/nab-logo.webp" />
+                <img class="royal-logo" src="/assets/images/royal-logo.webp" />
+                <img class="revolut-logo" src="/assets/images/revolut-logo.webp" />
+              </div>
+              <div class="game-push__inner-text">
+              <p class="game-push__inner-header">{{payment}}</p>
+              <span>{{recieved}} {{currency}}3820 {{from}}</span>
+              <span class="game-push__inner-title">{{title}}</span>
+                </div>
+              </div>
+              <div class="game-push__inner-right">
+                <div class="game-push__inner-date">{{now}}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="win-coins-container hide" id="coinsContainer"></div>
@@ -238,7 +473,7 @@
     <div id="win-modal" class="win-modal">
       <div class="win-modal__content" id="win-modal-content">
         <div class="win-modal__image">
-          <img src="./assets/images/big-win.webp" />
+          <img src="/assets/images/big-win.webp" />
         </div>
         <div class="win-modal__body">
           <div class="wins-container">

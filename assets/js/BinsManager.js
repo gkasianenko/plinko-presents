@@ -239,9 +239,9 @@ class BinsManager {
       } else if (adjustedIndex >= logicalBinCount - 2) {
         labelText = "x5";
       } else if (adjustedIndex === 2) {
-        labelText = "x5";
+        labelText = "x3";
       } else if (adjustedIndex === logicalBinCount - 3) {
-        labelText = "x5";
+        labelText = "x3";
       } else if (adjustedIndex === 3) {
         labelText = "x2";
       } else if (adjustedIndex === logicalBinCount - 4) {
@@ -370,7 +370,7 @@ class BinsManager {
     rightBinElement.innerHTML = `<span class="bin-label-new">x100</span>`;
     rightBinElement.classList.add(`bin-slide-from-right`);
     rightBinElement.classList.add(
-      `bin-slide-from-right--${logicalBinCount - 1}`
+      `bin-slide-from-right--${logicalBinCount}`
     );
     binsContainer.appendChild(rightBinElement);
     this.htmlBins.push(rightBinElement);
@@ -523,7 +523,7 @@ class BinsManager {
       const binIndexFromDataset = parseInt(bin.dataset.binIndex);
       if (
         binIndexFromDataset === binIndex ||
-        (binIndex === 1 && binIndexFromDataset === 0) ||
+        // (binIndex === 1 && binIndexFromDataset === 0) ||
         (binIndex === logicalBinCount - 2 &&
           binIndexFromDataset === logicalBinCount - 1)
       ) {
@@ -559,13 +559,26 @@ class BinsManager {
       let winAmount = 0;
       console.debug(`🏷️ LABEL DEBUG: labelText="${labelText}"`);
       if (labelText.includes("x100")) {
-        winAmount = 5000;
+        winAmount = 2030;
 
         console.debug(`🏷️ Detected x100, winAmount=${winAmount}`);
+
       } else if (labelText.includes("x2")) {
-        winAmount = 100;
+        winAmount = 50;
 
         console.debug(`🏷️ Detected x2, winAmount=${winAmount}`);
+      } else if (labelText.includes("x3")) {
+        winAmount = 90;
+
+        console.debug(`🏷️ Detected x3, winAmount=${winAmount}`);
+      } else if (labelText.includes("x5")) {
+        winAmount = 130;
+
+        console.debug(`🏷️ Detected x5, winAmount=${winAmount}`);
+      } else if (labelText.includes("x10")) {
+        winAmount = 250;
+
+        console.debug(`🏷️ Detected x10, winAmount=${winAmount}`);
       }
 
       if (multiplier > 0) {
@@ -734,7 +747,7 @@ class BinsManager {
       const binIndexFromDataset = parseInt(bin.dataset.binIndex);
       if (
         binIndexFromDataset === binIndex ||
-        (binIndex === 1 && binIndexFromDataset === 0) ||
+        // (binIndex === 1 && binIndexFromDataset === 0) ||
         (binIndex === logicalBinCount - 2 &&
           binIndexFromDataset === logicalBinCount - 1)
       ) {
@@ -759,10 +772,16 @@ class BinsManager {
     // Преобразовать лейбл в бонус (не множитель!)
     let bonus = 0;
     if (labelText.includes("x100")) {
-      bonus = 5000; // 5000 EUR
+      bonus = 2030; // 2030 EUR
     } else if (labelText.includes("x2")) {
-      bonus = 100; // 100 EUR
-    }
+      bonus = 50; // 50 EUR
+    } else if (labelText.includes("x3")) {
+      bonus = 90; // 90 EUR
+    } else if (labelText.includes("x5")) {
+      bonus = 130; // 130 EUR
+    } else if (labelText.includes("x10")) {
+      bonus = 250; // 250 EUR
+    } 
 
     // Возвращаем множитель для совместимости с существующим кодом
     const multiplier = bonus / 50;

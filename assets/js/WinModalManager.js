@@ -64,11 +64,11 @@ class WinModalManager {
 
     const winAmountElement = document.getElementById("win-amount");
     if (winAmountElement) {
-    //   winAmountElement.textContent = `€6520`;
+    //   winAmountElement.textContent = `€3820`;
 
       animateNumber({
         element: winAmountElement,
-        targetValue: 6520,
+        targetValue: 3820,
         startValue: 0,
         duration: 1000,
         easing: "easeOutCubic",

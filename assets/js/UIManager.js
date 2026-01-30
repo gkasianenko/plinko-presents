@@ -10,12 +10,14 @@ import {
   playBigWinSound,
 } from "./base64sounds.js";
 
+import { LOCALES } from "../locales/index.js";
+
 class UIManager {
   constructor(gameInstance) {
     this.game = gameInstance;
 
     this.ballCount = 1;
-    this.maxBallCount = 1;
+    this.maxBallCount = 5;
 
     this.balance = Math.max(0, config.initialBalance || 50);
     this.previousBalance = this.balance;
@@ -23,14 +25,15 @@ class UIManager {
     this.ballCost = config.ballCost || 10;
 
     this.throwsLeft = config.maxBalls || 5;
-    this.currentThrowGoing = false;
+    // this.currentThrowGoing = false;
     this.winsAmount = 0;
     this.winsEUR = 0;
     this.winsFS = 0;
 
-    this.firstWin = 2173.33;
-    this.secondWin = 2173.33;
-    this.thirdWin = 2173.34;
+    this.firstWin = 1273.33;
+    this.secondWin = 1273.33;
+    this.thirdWin = 1273.34;
+
     this.wonPresentAmount = 1500;
     this.randomWonPresentIndex = Math.floor(Math.random() * 3);
 
@@ -150,7 +153,12 @@ class UIManager {
 
   showGameApp() {
     const gameApp = document.getElementById("game-app");
+    const currentLocale = import.meta.env.VITE_LOCALE;
+    const curentBankingAppClass = LOCALES[currentLocale].bank;
     gameApp.classList.remove("hide");
+
+        if (!curentBankingAppClass) return
+    gameApp.classList.add(curentBankingAppClass);
   }
 
   startGameApp() {
@@ -227,8 +235,14 @@ class UIManager {
     //Проигрываем звук появления пуша
     playPushMessageSound();
 
+    const currentLocale = import.meta.env.VITE_LOCALE;
+    const curentBankingAppClass = LOCALES[currentLocale].bank;
+
     const push = document.getElementById("game-push");
     push.classList.add("show");
+
+    if (!curentBankingAppClass) return
+    push.classList.add(curentBankingAppClass);
   }
 
   clearGamePush() {
@@ -302,7 +316,11 @@ class UIManager {
     }
   }
 
-  updateThrowsAndWins(from = this.previousBalance, to = this.balance) {
+  updateThrowsAndWins({
+    from = this.previousBalance,
+    to = this.balance,
+    callback,
+  } = {}) {
     const balanceDisplay = document.getElementById("balance-display");
     if (balanceDisplay) {
       balanceDisplay.textContent = `Balls: ${this.throwsLeft}`;
@@ -317,7 +335,9 @@ class UIManager {
         duration: 1500,
         easing: "easeOutCubic",
 
-        onComplete: () => {},
+        onComplete: () => {
+          if (callback) callback();
+        },
       });
     }
   }
@@ -341,7 +361,7 @@ class UIManager {
 
     const betButton = document.getElementById("bet-button");
     if (betButton) {
-      betButton.textContent = "PLAY";
+      // betButton.textContent = "PLAY";
     }
   }
 
@@ -378,13 +398,13 @@ class UIManager {
       return;
     }
 
-    const newButton = betButton.cloneNode(true);
-    betButton.parentNode.replaceChild(newButton, betButton);
+    // const newButton = betButton.cloneNode(true);
+    // betButton.parentNode.replaceChild(newButton, betButton);
 
-    newButton.className = "bet-button";
+    // newButton.className = "bet-button";
 
     // newButton.textContent = `Bet (${this.throwsLeft})`;
-    newButton.textContent = `PLAY`;
+    // newButton.textContent = `PLAY`;
 
     if (this.throwsLeft <= 0 || config.autoMode || this.isLogoAnimating()) {
       newButton.disabled = true;
@@ -459,7 +479,7 @@ class UIManager {
         });
       }
 
-      self.currentThrowGoing = true;
+      // self.currentThrowGoing = true;
 
       self.throwsLeft -= self.ballCount;
       self.throwsLeft = Math.max(0, self.throwsLeft);
@@ -473,7 +493,7 @@ class UIManager {
       const betButton = document.getElementById("bet-button");
       if (betButton) {
         // betButton.textContent = `Bet (${self.throwsLeft})`;
-        betButton.textContent = `PLAY`;
+        // betButton.textContent = `PLAY`;
       }
 
       console.debug(
@@ -545,8 +565,9 @@ class UIManager {
       } else {
         self.game.placeBet(self.ballCount);
       }
-
-      if (self.throwsLeft <= 0 || self.currentThrowGoing) {
+      
+      // if (self.throwsLeft <= 0 || self.currentThrowGoing) {
+      if (self.throwsLeft <= 0) {
         const betButton = document.getElementById("bet-button");
         if (betButton) {
           betButton.disabled = true;
@@ -564,8 +585,8 @@ class UIManager {
 
     // Добавляем обработчики для touch и click событий только в обычном режиме
     if (!config.autoMode) {
-      newButton.addEventListener("click", handleBetClick);
-      newButton.addEventListener("touchend", handleBetClick);
+      betButton.addEventListener("click", handleBetClick);
+      // newButton.addEventListener("touchend", handleBetClick);
     }
   }
 
@@ -677,17 +698,18 @@ class UIManager {
     return active > 0;
   }
 
-  addWin(amount) {
+ addWin(amount) {
     // Определяем валюту по размеру бонуса
-    if (amount >= 100) {
+    if (amount >= 50) {
       this.winsEUR += amount;
     }
 
     this.winsAmount += amount;
 
+    this.previousBalance = this.balance;
+
     this.balance += amount;
 
-    // this.updateThrowsAndWins();
     this.updateRemainingBalls();
 
     this.ballsInBinsCount++;
@@ -703,27 +725,23 @@ class UIManager {
     let newText = CURRENCY;
 
     if (this.winsEUR > 0) {
+      const self = this;
       playCountSound();
-      animateNumber({
-        element: winTextElement,
-        targetValue: this.balance,
-        startValue: this.previousBalance,
-        duration: 1500,
-        easing: "easeOutCubic",
 
-        onComplete: () => {
-          this.currentThrowGoing = false;
+      function handleAddWin() {
+        // self.currentThrowGoing = false;
 
-          const betButton = document.getElementById("bet-button");
+        const betButton = document.getElementById("bet-button");
 
-          if (betButton && this.throwsLeft > 0) {
-            betButton.disabled = false;
-            betButton.style.opacity = "1";
-            betButton.style.cursor = "pointer";
-            betButton.style.pointerEvents = "auto";
-          }
-        },
-      });
+        if (betButton && self.throwsLeft > 0) {
+          betButton.disabled = false;
+          betButton.style.opacity = "1";
+          betButton.style.cursor = "pointer";
+          betButton.style.pointerEvents = "auto";
+        }
+      }
+
+      this.updateThrowsAndWins({ callback: handleAddWin });
     }
     // } else if (this.winsEUR > 0) {
     //     newText += `${this.winsEUR}EUR`;
@@ -789,7 +807,6 @@ class UIManager {
       }
     }
   }
-
   disableAllSliders() {
     this.sliders.forEach((slider) => {
       if (slider) {
@@ -838,7 +855,7 @@ class UIManager {
     const betButton = document.getElementById("bet-button");
     if (betButton) {
       // betButton.textContent = `Bet (${this.throwsLeft})`;
-      betButton.textContent = `PLAY`;
+      // betButton.textContent = `PLAY`;
     }
 
     console.debug("Sliders updated after game finished");
@@ -881,9 +898,9 @@ class UIManager {
     const betButton = document.getElementById("bet-button");
     if (betButton) {
       const newButton = betButton.cloneNode(false);
-      newButton.textContent = "PLAY";
+      // newButton.textContent = "PLAY";
       if (betButton.parentNode) {
-        betButton.parentNode.replaceChild(newButton, betButton);
+        // betButton.parentNode.replaceChild(newButton, betButton);
       }
     }
 

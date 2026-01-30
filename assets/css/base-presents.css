@@ -1,0 +1,490 @@
+/* стили для plinko-recieve и plinko-present */
+
+.plinko-recieve {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 87%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: var(--transition-default);
+}
+
+.plinko-recieve.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: var(--transition-default);
+}
+
+.plinko-recieve__amount {
+  position: relative;
+  top: 40px;
+  font-size: 57px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 20px;
+  transition: var(--transition-default);
+  background: linear-gradient(
+    to bottom,
+    #ffd104 0%,
+    #ffd104 70%,
+    #ff6401 90%,
+    #ff6401 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.plinko-recieve__amount::after {
+  padding: 7px 20px;
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plinko-recieve__text {
+  position: relative;
+  top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  text-shadow:
+    0px 1px 0 #000,
+    1px 2px 0 #000,
+    0px 1px 0 #000,
+    0px 0px 0 #000;
+  color: #fff;
+  text-align: center;
+}
+
+.plinko-recieve__btn-wrapper {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.plinko-recieve__btn {
+  width: 350px;
+  height: 82px;
+  background-image: url("../images/install-btn.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #612a2a;
+  font-size: 48px;
+  animation: shakeAndScaleRecieve 0.5s ease-in-out infinite;
+}
+
+@keyframes vortexEffect {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0) rotate(1080deg);
+  }
+  55% {
+    transform: scale(0) rotate(1260deg);
+  }
+  85% {
+    transform: scale(1.1) rotate(1440deg);
+  }
+  100% {
+    transform: scale(1) rotate(1440deg);
+  }
+}
+
+.plinko-present-set {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.plinko-present-set .plinko-present:nth-child(even) {
+  position: relative;
+  top: -60px;
+  left: -100px;
+}
+
+.plinko-present-set .plinko-present:nth-child(odd) {
+  position: relative;
+  top: -140px;
+  left: 100px;
+}
+
+.plinko-present-set .plinko-present:first-child {
+  position: relative;
+  top: 0;
+  left: 100px;
+}
+
+.plinko-present {
+  width: 180px;
+  height: 200px;
+  cursor: pointer;
+  user-select: none;
+  transform: rotate(0deg);
+  flex-shrink: 0;
+}
+
+.plinko-present.animate {
+  animation: vortexEffect 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.plinko-present__background {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+}
+
+.plinko-present__bottom img {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.plinko-present__top img {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 60px;
+  z-index: 2;
+}
+
+.plinko-present__reward-wrapper {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.plinko-present__reward {
+  font-family: var(--luckiest);
+  font-size: 66px;
+  font-weight: 400;
+  background: linear-gradient(
+    to bottom,
+    #ffd104 0%,
+    #ffd104 70%,
+    #ff6401 90%,
+    #ff6401 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.plinko-present__reward::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plinko-present__hand {
+  width: 45px;
+  position: absolute;
+  right: 0;
+  top: 140px;
+  animation: shakeAndScale 0.5s ease-in-out infinite;
+}
+
+.plinko-present.win .plinko-present__hand,
+.plinko-present.loose .plinko-present__hand {
+  display: none;
+}
+
+.plinko-present.win .plinko-present__reward-wrapper {
+  display: flex;
+  top: -27px;
+  z-index: 3;
+}
+
+.plinko-present.win .plinko-present__top img {
+  left: 90px;
+  transform: rotate(40deg);
+  top: 50px;
+}
+
+.plinko-present.loose .plinko-present__top img {
+  top: -75px;
+}
+
+/* Медиа-запросы для старых стилей */
+
+@media (orientation: landscape) {
+  .plinko-recieve {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+  }
+
+  .plinko-recieve__text {
+    top: 33px;
+    font-size: 38px;
+  }
+
+  .plinko-recieve__amount {
+    top: 37px;
+    font-size: 70px;
+  }
+
+  .plinko-recieve__btn {
+    width: 278px;
+    height: 65px;
+    font-size: 40px;
+  }
+
+  .plinko-recieve__btn-wrapper {
+    bottom: -26px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 800px) {
+  .plinko-recieve__amount {
+    font-size: 50px;
+  }
+
+  .plinko-present-set {
+    margin-top: 80px;
+  }
+
+  .plinko-present {
+    width: 140px;
+    height: 160px;
+  }
+
+  .plinko-present.loose .plinko-present__top img {
+    top: -40px;
+  }
+
+  .plinko-present.win .plinko-present__top img {
+    left: 65px;
+    transform: rotate(40deg);
+    top: 35px;
+  }
+
+  .plinko-present__reward {
+    font-size: 51px;
+  }
+
+  .plinko-present.win .plinko-present__reward-wrapper {
+    top: -20px;
+  }
+
+  .plinko-present__hand {
+    width: 35px;
+    top: 110px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .plinko-recieve {
+    top: 61%;
+  }
+
+  .plinko-recieve__amount {
+    font-size: 33px;
+  }
+
+  .plinko-present-set {
+    margin-top: 120px;
+    flex-direction: row;
+    gap: 80px;
+  }
+
+  .plinko-present-set .plinko-present:first-child {
+    position: static;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(even) {
+    position: static;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(odd) {
+    position: static;
+  }
+}
+
+@media (max-height: 400px) {
+  .plinko-recieve {
+    top: 64%;
+  }
+
+  .plinko-recieve__amount {
+    font-size: 28px;
+  }
+
+  .plinko-present-set {
+    margin-top: 45px;
+    flex-direction: row;
+    gap: 60px;
+  }
+
+  .plinko-present {
+    width: 115px;
+    height: 135px;
+  }
+
+  .plinko-present__hand {
+    width: 30px;
+    top: 100px;
+  }
+
+  .plinko-present__top img {
+    bottom: 40px;
+  }
+
+  .plinko-present__background {
+    bottom: 30px;
+  }
+
+  .plinko-present.loose .plinko-present__top img {
+    top: -25px;
+  }
+
+  .plinko-present__reward {
+    font-size: 42px;
+  }
+
+  .plinko-present.win .plinko-present__reward-wrapper {
+    top: -10px;
+  }
+
+  .plinko-present.win .plinko-present__top img {
+    left: 47px;
+    transform: rotate(40deg);
+    top: 34px;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 600px) {
+  .plinko-recieve__amount {
+    font-size: 45px;
+  }
+
+  .plinko-present-set {
+    margin-top: 90px;
+  }
+
+  .plinko-present {
+    width: 140px;
+    height: 160px;
+  }
+
+  .plinko-present.loose .plinko-present__top img {
+    top: -40px;
+  }
+
+  .plinko-present.win .plinko-present__top img {
+    left: 65px;
+    transform: rotate(40deg);
+    top: 35px;
+  }
+
+  .plinko-present__reward {
+    font-size: 51px;
+  }
+
+  .plinko-present.win .plinko-present__reward-wrapper {
+    top: -20px;
+  }
+
+  .plinko-present__hand {
+    width: 35px;
+    top: 110px;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 500px) {
+  .plinko-field {
+    height: 100vh;
+    margin-top: 60px;
+  }
+
+  .plinko-recieve {
+    top: 49%;
+  }
+
+  .plinko-recieve__btn {
+    width: 270px;
+    height: 64px;
+    font-size: 35px;
+  }
+
+  .plinko-recieve__text {
+    top: 33px;
+    font-size: 30px;
+  }
+
+  .plinko-recieve__amount {
+    top: 38px;
+    font-size: 40px;
+  }
+
+  .plinko-present-set {
+    margin-top: 80px;
+  }
+
+  .plinko-present {
+    width: 120px;
+    height: 140px;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(even) {
+    position: relative;
+    top: -20px;
+    left: -65px;
+  }
+
+  .plinko-present-set .plinko-present:nth-child(odd) {
+    position: relative;
+    top: -40px;
+    left: 65px;
+  }
+
+  .plinko-present-set .plinko-present:first-child {
+    position: relative;
+    top: 0;
+    left: 65px;
+  }
+
+  .plinko-present__reward {
+    font-size: 44px;
+  }
+}

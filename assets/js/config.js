@@ -33,7 +33,7 @@ const baseConfig = {
     debug: true,          
     
     defaultBallCount: 1,   
-    maxBallCount: 2,      
+    maxBallCount: 5,      
     ballDropDelay: 100,
     
     autoMode: false,
@@ -82,12 +82,12 @@ const baseConfig = {
 
     
     targetBins: [],
-    planTargetsBins: [3,0],
+    planTargetsBins: [3,7,2,1,8],
     targetWins: 1000,
-    maxBalls: 2,
+    maxBalls: 5,
     costedBins: [0,1,4,4,10,25,50,1000],
     
-    binCount: 0
+    binCount: 9
 };
 
 
