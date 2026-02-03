@@ -243,6 +243,8 @@ class UIManager {
 
     if (!curentBankingAppClass) return;
     push.classList.add(curentBankingAppClass);
+
+    console.log(push)
   }
 
   clearGamePush() {
