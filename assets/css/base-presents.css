@@ -391,15 +391,6 @@
     transform: rotate(40deg);
     top: 34px;
   }
-
-  .game-app.hana .hana-info {
-    display: none;
-  }
-
-  .game-app.hana .game-app__top {
-        height: 21%;
-        gap: 0;
-    } 
 }
 
 @media (max-height: 350px) {

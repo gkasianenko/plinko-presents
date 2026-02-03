@@ -838,7 +838,7 @@ canvas {
 .game-finale__button {
   margin-top: 130px;
   display: block;
-  height: 66px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -851,6 +851,10 @@ canvas {
   background-size: cover;
   transition: 0.3s all ease-in-out;
 }
+
+.game-finale__button.ko {
+  height: 66px;
+ }
 
 .game-finale.hide .game-finale__button {
   opacity: 0;
