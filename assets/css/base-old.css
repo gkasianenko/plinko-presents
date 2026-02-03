@@ -838,7 +838,7 @@ canvas {
 .game-finale__button {
   margin-top: 130px;
   display: block;
-  height: 56px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1877,9 +1877,11 @@ canvas {
     bottom: -35%;
   }
 
+  
   .game-app__search {
     padding: 30px 15px 0 15px;
   }
+  
 
   .game-app__bottom {
     gap: 20px;

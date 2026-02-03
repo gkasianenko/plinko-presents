@@ -1,7 +1,7 @@
 import { baseConfig, config, updateSizesBasedOnRows } from "./config.js";
 import WinModalManager from "./WinModalManager.js";
 import TargetWinsCalculator from "./TargetWinsCalculator.js";
-import { animateNumber, CURRENCY } from "./utils.js";
+import { animateNumber, CURRENCY, CURRENCYVALUE, isKoreanCurrency } from "./utils.js";
 import { startFountain, stopFountain } from "./CoinFountain.js";
 import {
   playCountSound,
@@ -9,7 +9,7 @@ import {
   playPushMessageSound,
   playBigWinSound,
 } from "./base64sounds.js";
-
+import formatKoreanWon from "./koreanWonFormatter.js";
 import { LOCALES } from "../locales/index.js";
 
 class UIManager {
@@ -157,7 +157,7 @@ class UIManager {
     const curentBankingAppClass = LOCALES[currentLocale].bank;
     gameApp.classList.remove("hide");
 
-        if (!curentBankingAppClass) return
+    if (!curentBankingAppClass) return;
     gameApp.classList.add(curentBankingAppClass);
   }
 
@@ -241,7 +241,7 @@ class UIManager {
     const push = document.getElementById("game-push");
     push.classList.add("show");
 
-    if (!curentBankingAppClass) return
+    if (!curentBankingAppClass) return;
     push.classList.add(curentBankingAppClass);
   }
 
@@ -328,6 +328,9 @@ class UIManager {
 
     const winsDisplay = document.getElementById("wins-display");
     if (winsDisplay) {
+
+      console.log('fired updateThrows')
+
       animateNumber({
         element: winsDisplay,
         targetValue: to,
@@ -565,7 +568,7 @@ class UIManager {
       } else {
         self.game.placeBet(self.ballCount);
       }
-      
+
       // if (self.throwsLeft <= 0 || self.currentThrowGoing) {
       if (self.throwsLeft <= 0) {
         const betButton = document.getElementById("bet-button");
@@ -589,7 +592,6 @@ class UIManager {
       // newButton.addEventListener("touchend", handleBetClick);
     }
   }
-
 
   setupPresentsMinigame() {
     const recieveElement = document.getElementById("plinko-recieve");
@@ -619,39 +621,40 @@ class UIManager {
       const rewardText = present.querySelector('[data-id="present-reward"]');
 
       if (presentIndex === index) {
-        rewardText.dataset.text = `€${this.wonPresentAmount}`;
-        rewardText.textContent = `€${this.wonPresentAmount}`;
+        if (isKoreanCurrency) {
+          rewardText.dataset.text = formatKoreanWon(this.wonPresentAmount * CURRENCYVALUE);
+          rewardText.textContent = formatKoreanWon(this.wonPresentAmount * CURRENCYVALUE);
+        } else {
+          rewardText.dataset.text = `${CURRENCY}${this.wonPresentAmount}`;
+          rewardText.textContent = `${CURRENCY}${this.wonPresentAmount}`;
+        }
       }
 
-      present.addEventListener(
-        "click",
-        function handlePresentClick() {
+      (present.addEventListener("click", function handlePresentClick() {
+        present.removeEventListener("click", handlePresentClick);
 
-          present.removeEventListener('click', handlePresentClick);
-          
+        this.classList.remove("animate");
+
+        void this.offsetWidth;
+
+        this.classList.add("animate");
+
+        setTimeout(() => {
+          if (presentIndex === index) {
+            this.classList.add("win");
+          } else {
+            this.classList.add("loose");
+          }
+        }, 1000);
+
+        setTimeout(() => {
           this.classList.remove("animate");
-
-          void this.offsetWidth;
-
-          this.classList.add("animate");
-
-
-          setTimeout(() => {
-            if (presentIndex === index) {
-              this.classList.add("win");
-            } else {
-              this.classList.add("loose");
-            }
-          }, 1000);
-
-          setTimeout(() => {
-            this.classList.remove("animate");
-            if (presentIndex === index) {
-              handleRecieve();
-            }
-          }, 2000);
-        },
-      ), { once: true };
+          if (presentIndex === index) {
+            handleRecieve();
+          }
+        }, 2000);
+      }),
+        { once: true });
     });
   }
 
@@ -698,7 +701,7 @@ class UIManager {
     return active > 0;
   }
 
- addWin(amount) {
+  addWin(amount) {
     // Определяем валюту по размеру бонуса
     if (amount >= 50) {
       this.winsEUR += amount;

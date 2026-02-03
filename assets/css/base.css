@@ -134,6 +134,22 @@ canvas {
   z-index: 5;
 }
 
+.wins-container {
+  margin-bottom: 50px;
+        margin-top: 15px;
+        width: 340px;
+        height: 66px;
+  background-image: url("../images/score-btn.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  z-index: 5;
+}
+
 .wins-container.hide {
   visibility: hidden;
   opacity: 0;
@@ -165,7 +181,7 @@ canvas {
 
 /* Базовые стили для wins-display - возвращаем оригинальный размер шрифта 50px */
 .wins-display {
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -190,10 +206,10 @@ canvas {
 
 .wins-result {
   position: absolute;
-  top: 7px;
-  left: -86px;
-  width: 280px;
-  height: 60px;
+top: 5px;
+        left: -59px;
+        width: 221px;
+        height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,6 +234,11 @@ canvas {
   flex-direction: column;
 }
 
+.wins-info.ko {
+    top: 22px;
+    right: 63px;
+}
+
 .wins-desc {
   display: block;
   font-size: 25px;
@@ -233,6 +254,14 @@ canvas {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+}
+
+.wins-desc.ko {
+  font-size: 19px;
+}
+
+.ko {
+  white-space: nowrap !important;
 }
 
 /* Стили для основного игрового поля */
@@ -588,7 +617,8 @@ canvas {
 }
 
 .game-app.nab .game-app__balance .game-app__accounts,
-.game-app.royal .game-app__balance .game-app__accounts {
+.game-app.royal .game-app__balance .game-app__accounts,
+.game-app.hana .game-app__balance .game-app__accounts {
   display: none;
 }
 
@@ -711,6 +741,7 @@ canvas {
 }
 
 .game-app.nab .game-app__controls .revolut-controls,
+.game-app.hana .game-app__controls .revolut-controls,
 .game-app .game-app__controls .nab-controls {
   display: none;
 }
@@ -762,7 +793,10 @@ canvas {
 .game-app.revolut .game-app__nav .nab-nav,
 .game-app.revolut .game-app__nav .royal-nav,
 .game-app.royal .game-app__nav .revolut-nav,
-.game-app.royal .game-app__nav .nab-nav {
+.game-app.royal .game-app__nav .nab-nav,
+.game-app.hana .game-app__nav .revolut-nav,
+.game-app.hana .game-app__nav .nab-nav,
+.game-app.hana .game-app__nav .royal-nav {
   display: none;
 }
 
@@ -772,6 +806,11 @@ canvas {
 
 .game-app.revolut .game-app__nav .revolut-nav {
   display: flex;
+}
+
+.game-app.hana .game-app__nav .hana-nav {
+  display: flex;
+  width: 100%;
 }
 
 .game-app.nab .game-app__nav {
@@ -900,6 +939,38 @@ canvas {
   padding: 10px 15px;
 }
 
+.game-app.hana {
+  background: linear-gradient(
+    180deg,
+    #fff 20%,
+    #e7eaee 26.92%,
+    #f1f3f5 57.69%,
+    #ffffff 83.17%
+  );
+}
+
+.game-app.hana .game-app__wrapper {
+  background: linear-gradient(
+    180deg,
+    #fff 20%,
+    #e7eaee 26.92%,
+    #f1f3f5 57.69%,
+    #ffffff 83.17%
+  );
+}
+
+.game-app.hana .game-app__controls {
+  display: none;
+}
+
+.game-app.hana .hana-nav {
+  background: #fff;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 16px;
+}
+
 .game-push .game-push__wrapper {
   width: 100%;
 }
@@ -940,6 +1011,10 @@ canvas {
   display: block;
 }
 
+.game-push.hana .game-push__inner-left .game-push__inner-logo .hana-logo {
+  display: block;
+}
+
 .game-push .game-push__inner-header {
   margin-bottom: 5px;
   font-weight: 700;
@@ -949,12 +1024,23 @@ canvas {
   font-family: var(--mont);
 }
 
+.game-push .game-push__inner-date.ko {
+  white-space: nowrap;
+}
+
 .game-push.revolut .revolut-push {
   display: block;
 }
 
 .game-app.royal .revolut-search,
-.game-app.nab .revolut-search {
+.game-app.royal .nab-search,
+.game-app.royal .hana-search,
+.game-app.nab .revolut-search,
+.game-app.nab .royal-search,
+.game-app.nab .hana-search,
+.game-app.hana .revolut-search,
+.game-app.hana .royal-search,
+.game-app.hana .nab-search {
   display: none;
 }
 
@@ -1369,6 +1455,145 @@ canvas {
   gap: 15px;
 }
 
+.game-app.hana .game-app__nav .hana-nav .hana-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--mont);
+  font-size: 12px;
+  font-weight: 700;
+  color: #95a2af;
+  height: 42px;
+}
+
+.game-app.hana .game-app__nav .hana-nav .hana-nav__item.home {
+  color: #019591;
+}
+
+.game-app.hana .game-app__nav .hana-nav .hana-nav__item.menu {
+  gap: 13px;
+}
+
+.game-app.hana .game-app__notifications {
+  background: #fff;
+}
+
+.game-app.hana .game-app__notification .game-app__notification-info,
+.game-app.hana .game-app__notification .game-app__date {
+  color: #000;
+  font-weight: 500;
+  font-family: var(--mont);
+}
+
+.game-app.hana .game-app__notification-logo img {
+  border-radius: 100px;
+}
+
+.game-app.hana .game-app__notification-logo img {
+  border-radius: 100px;
+}
+
+.game-app.hana .game-app__notification .right {
+  color: #000;
+}
+
+.game-app.hana .game-app__notification .right::before {
+  position: relative;
+  content: "+";
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.game-app.hana .hana-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  font-weight: 500;
+  font-family: var(--mont);
+}
+
+.game-app.hana .hana-search .hana-search__left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.game-app.hana .hana-search .hana-search__left .hana-user {
+  font-size: 18px;
+}
+
+.game-app.hana .hana-search .hana-search__left .hana-report {
+  font-size: 12px;
+  padding: 7px 15px;
+  background: #e3e8ec;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.game-app.hana .hana-search .hana-search__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.game-app.hana .hana-search .hana-search__right img {
+  width: 100%;
+  max-width: 25px;
+}
+
+.game-app.hana .revolut-info {
+  display: none;
+}
+
+.game-app.hana .hana-info {
+  color: #000;
+  font-size: 18px;
+}
+
+.game-app.hana .hana-info .hana-info__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-app.hana .hana-info .hana-info__left {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.game-app.hana .hana-info .hana-info__right {
+  height: 25px;
+}
+
+.game-app.hana .game-app__balance {
+  padding: 15px;
+  padding-top: 25px;
+  margin-left: -16px;
+  margin-right: -16px;
+  background: #fff;
+  border-radius: 16px;
+  gap: 60px;
+}
+
+.game-app.hana .game-app__more {
+  color: #000;
+  z-index: 2;
+  bottom: 105px;
+}
+
+.game-app.hana .game-app__balance .game-app__amount {
+  padding-bottom: 50px;
+  font-size: 35px;
+  color: #000;
+}
+
 .game-finale {
   position: relative;
   margin-top: 120px;
@@ -1396,15 +1621,23 @@ canvas {
 
 .game-finale__background {
   position: absolute;
-  bottom: -30%;
+  bottom: -40%;
   left: 50%;
   transform: translateX(-50%);
-  background-image: url("../images/money-group.webp");
+  background-image: url("../images/money-group-eur.webp");
   background-repeat: no-repeat;
   width: 900px;
   height: 800px;
   z-index: 1;
   transition: 0.3s all ease-in-out;
+}
+
+.game-finale__background.ko {
+  background-image: url("../images/money-group-kr.webp");
+}
+
+.game-finale__background.au, .game-finale__background.cd {
+  background-image: url("../images/money-group-usd.webp");
 }
 
 .game-finale.hide .game-finale__background {
@@ -1415,7 +1648,7 @@ canvas {
 .game-finale__button {
   margin-top: 130px;
   display: block;
-  height: 56px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1732,12 +1965,12 @@ canvas {
   }
 
   .wins-desc {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .wins-info {
-    top: 11px;
-    right: 86px;
+top: 22px;
+        right: 64px;
   }
 
   .plinko-hole {
@@ -1782,6 +2015,10 @@ canvas {
 
   .game-app__search {
     padding: 30px 15px 0 15px;
+  }
+
+  .game-app.hana .game-app__search {
+    padding: 15px 15px 0 15px;
   }
 
   .game-app__controls {
@@ -2020,8 +2257,15 @@ canvas {
     top: 8px;
     right: 67px;
   }
+  .wins-info.ko {
+    top: 14px;
+    right: 55px;
+  }
   .wins-desc {
     font-size: 16px;
+  }
+  .wins-desc.ko {
+    font-size: 13px;
   }
   .wins-result {
     top: 5px;
@@ -2085,7 +2329,7 @@ canvas {
 
   .game-finale__button {
     margin-top: 25px;
-    height: 50px;
+    height: 59px;
     font-size: 34px;
   }
 
@@ -2166,7 +2410,7 @@ canvas {
   }
 
   .game-app__top {
-    height: 23%;
+    height: 30%;
     gap: 15px;
   }
 
@@ -2234,8 +2478,71 @@ canvas {
   }
 
   .game-app.revolut .game-app__balance .game-app__accounts {
-   display: none;
+    display: none;
   }
+
+   .game-app.hana .game-app__balance {
+    gap: 10px;
+    padding-top: 5px;
+   }
+
+   .game-app.hana .hana-info {
+    font-size: 15px;
+   }
+
+   .game-app.hana .game-app__balance img{
+    height: 20px;
+   }
+
+   .game-app.hana .game-app__nav .hana-nav .hana-nav__item {
+    height: 37px;
+   }
+
+   .game-app.hana .game-app__nav .hana-nav .hana-nav__item.home img {
+  width: 25px;
+}
+
+   .game-app.hana .game-app__nav .hana-nav .hana-nav__item.shop img {
+  width: 30px;
+}
+
+   .game-app.hana .game-app__nav .hana-nav .hana-nav__item.assets img {
+  width: 19px;
+}
+   .game-app.hana .game-app__nav .hana-nav .hana-nav__item.pay img {
+  width: 26px;
+}
+   .game-app.hana .game-app__nav .hana-nav .hana-nav__item.menu img {
+  width: 23px;
+}
+   .game-app.hana .game-app__notifications {
+ height: 210px;
+}
+   .game-app.hana .game-app__more {
+ display: none;
+}
+
+   .game-app.hana .game-app__balance .game-app__amount {
+    font-size: 25px;
+   }
+
+   .game-app.hana .game-app__notifications-wrapper {
+    width: 100%;
+   }
+
+   .game-app.hana .game-app__notifications {
+    width: 100%;
+   }
+
+   .game-app.hana .game-app__balance .game-app__amount {
+    padding-bottom: 0;
+   }
+
+   .game-app.hana .game-app__search {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+   }
 }
 
 /* Медиа-запрос для очень маленьких экранов в landscape */
@@ -2425,7 +2732,7 @@ canvas {
   }
 
   .game-app.revolut .game-app__balance .game-app__amount {
-font-size: 20px;
+    font-size: 20px;
   }
 
   .game-app__more {
@@ -2458,8 +2765,8 @@ font-size: 20px;
   }
 
   .game-push {
-width: 100%;
-max-width: 320px;
+    width: 100%;
+    max-width: 320px;
   }
 }
 
@@ -2489,6 +2796,11 @@ max-width: 320px;
   .wins-info {
     top: 12px;
     right: 79px;
+  }
+
+  .wins-info.ko {
+    top: 22px;
+    right: 57px;
   }
 
   .wins-desc {
@@ -2543,6 +2855,10 @@ max-width: 320px;
     padding: 30px 0 0 0;
   }
 
+  .game-app.hana .game-app__search {
+    padding: 15px 0 0 0;
+  }
+
   .game-app__bottom {
     gap: 20px;
   }
@@ -2552,12 +2868,21 @@ max-width: 320px;
     gap: 5px;
   }
 
+  .game-app.hana .game-app__top {
+    height: 23%;
+    gap: 5px;
+  }
+
   .game-app.nab .game-app__top {
     height: 25%;
   }
 
   .game-app__bottom {
     height: 58%;
+  }
+
+  .game-app.hana .game-app__bottom {
+    height: 63%;
   }
 
   .game-app.nab .game-app__bottom {

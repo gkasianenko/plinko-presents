@@ -40,19 +40,19 @@
         <div class="plinko-field hide-game" id="plinko-field">
           <div id="wins-container" class="wins-container">
             <div class="wins-wrapper">
-              <div class="wins-info">
-                <span class="wins-desc">{{bonusGame}}</span>
+              <div class="wins-info {{lang}}">
+                <span class="wins-desc {{lang}}">{{bonusGame}}</span>
               </div>
               <div class="wins-result">
-                <span id="wins-display" class="wins-display">{{currency}}20</span>
+                <span id="wins-display" class="wins-display"></span>
               </div>
             </div>
           </div>
           <div class="plinko-recieve" id="plinko-recieve">
             <span
               class="plinko-recieve__amount"
-              data-text="{{whereIs}} {{currency}}1500 {{bonusHidden}}"
-              >{{whereIs}} {{currency}}1500 {{bonusHidden}}</span
+              data-text="{{whereIs}} {{currency}}{{hiddenBonusAmount}} {{bonusHidden}}"
+              >{{whereIs}} {{currency}}{{hiddenBonusAmount}} {{bonusHidden}}</span
             >
             <div class="plinko-present-set" id="plinko-present-set">
               <div class="plinko-present" data-item="plinko-present">
@@ -67,8 +67,8 @@
                     <img src="./assets/images/gift-1.webp" />
                   </div>
                   <div class="plinko-present__reward-wrapper">
-                    <span class="plinko-present__reward" data-text="€1500" data-id="present-reward">
-                      €1500
+                    <span class="plinko-present__reward {{lang}}" data-text="{{currency}}{{hiddenBonusAmount}}" data-id="present-reward">
+                      {{currency}}{{hiddenBonusAmount}}
                     </span>
                   </div>
                 </div>
@@ -89,8 +89,8 @@
                     <img src="./assets/images/gift-1.webp" />
                   </div>
                   <div class="plinko-present__reward-wrapper">
-                    <span class="plinko-present__reward" data-text="€1500" data-id="present-reward">
-                      €1500
+                    <span class="plinko-present__reward {{lang}}" data-text="{{currency}}{{hiddenBonusAmount}}" data-id="present-reward">
+                      {{currency}}{{hiddenBonusAmount}}
                     </span>
                   </div>
                 </div>
@@ -111,8 +111,8 @@
                     <img src="./assets/images/gift-1.webp" />
                   </div>
                   <div class="plinko-present__reward-wrapper">
-                    <span class="plinko-present__reward" data-text="€1500" data-id="present-reward">
-                      €1500
+                    <span class="plinko-present__reward {{lang}}" data-text="{{currency}}{{hiddenBonusAmount}}" data-id="present-reward">
+                      {{currency}}{{hiddenBonusAmount}}
                     </span>
                   </div>
                 </div>
@@ -186,10 +186,38 @@
                     />
                   </div>
                 </div>
+                <div class="hana-search">
+                  <div class="hana-search__left">
+                    <div class="hana-user">{{username}}</div>
+                    <div class="hana-report">{{report}}</div>
+                  </div>
+                  <div class="hana-search__right">
+                    <div class="hana-wallet">
+                      <img src="/assets/images/hana-wallet.webp"/>
+                    </div>
+                    <div class="hana-scan">
+                      <img src="/assets/images/hana-scan.webp"/>
+                    </div>
+                    <div class="hana-noti">
+                      <img src="/assets/images/hana-noti.webp"/>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="game-app__balance">
                 <span class="nab-info">{{balance}}</span>
                 <span class="revolut-info">{{mainPage}} • {{currencyType}}</span>
+                <div class="hana-info">
+                  <div class="hana-info__inner">
+                    <div class="hana-info__left">
+                   <p>{{yourAccount}}</p>
+                  <p>{{depositAndWithdrawal}} {{depositCode}}</p>
+                    </div>
+                    <div class="hana-info__right">
+                      <img src="/assets/images/hana-more.webp"/>
+                    </div>
+                  </div>
+                </div>
                 <span id="app-amount" class="game-app__amount">{{currency}}0</span>
                 <div class="game-app__accounts">
                   <span>{{accounts}}</span>
@@ -297,7 +325,7 @@
                     </div>
                   </div>
                   <div class="right">
-                    <span>1273.33{{currency}}</span>
+                    <span>{{partPaymentAmount}}{{currency}}</span>
                   </div>
                 </div>
                 <div class="game-app__notification">
@@ -311,7 +339,7 @@
                     </div>
                   </div>
                   <div class="right">
-                    <span>1273.33{{currency}}</span>
+                    <span>{{partPaymentAmount}}{{currency}}</span>
                   </div>
                 </div>
                 <div class="game-app__notification">
@@ -325,7 +353,7 @@
                     </div>
                   </div>
                   <div class="right">
-                    <span>1273.33{{currency}}</span>
+                    <span>{{partPaymentAmount}}{{currency}}</span>
                   </div>
                 </div>
               </div>
@@ -412,6 +440,53 @@
                   </span>
                 </div>
               </div>
+              <div class="hana-nav">
+                <div class="hana-nav__item home">
+                  <img
+                        class="hana-nav__item-img home"
+                        src="/assets/images/hana-home.webp"
+                      />
+                      <span class="hana-nav__item-text">
+                        {{home}}
+                      </span>
+                </div>
+                <div class="hana-nav__item shop">
+                  <img
+                        class="hana-nav__item-img shop"
+                        src="/assets/images/hana-shop.webp"
+                      />
+                      <span class="hana-nav__item-text">
+                        {{shop}}
+                      </span>
+                </div>
+                <div class="hana-nav__item assets">
+                  <img
+                        class="hana-nav__item-img assets"
+                        src="/assets/images/hana-assets.webp"
+                      />
+                      <span class="hana-nav__item-text">
+                        {{assets}}
+                      </span>
+                </div>
+                <div class="hana-nav__item pay">
+                  <img
+                        class="hana-nav__item-img pay"
+                        src="/assets/images/hana-pay.webp"
+                      />
+                      <span class="hana-nav__item-text">
+                        {{pay}}
+                      </span>
+                </div>
+                <div class="hana-nav__item menu">
+                  <img
+                        class="hana-nav__item-img menu"
+                        src="/assets/images/hana-menu.webp"
+                      />
+                      <span class="hana-nav__item-text">
+                        {{menu}}
+                      </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -423,7 +498,7 @@
             <div class="game-finale__text">
               <h1 class="game-finale__title">
                 <span class="game-finale__title-word">{{bonus}}</span>
-                <span class="game-finale__title-win">{{currency}}1500+250</span>
+                <span class="game-finale__title-win">{{currency}}{{hiddenBonusAmount}}+250</span>
                 <span>{{freeSpins}}</span>
               </h1>
             </div>
@@ -440,11 +515,11 @@
               />
             </div>
           </div>
-          <div class="game-finale__background"></div>
+          <div class="game-finale__background {{lang}}"></div>
         </div>
         <div class="game-left-controls"></div>
       </div>
-      <div class="game-push" id="game-push">
+      <div class="game-push hana" id="game-push">
         <div class="game-push__wrapper">
           <div class="game-push__inner">
             <div class="game-push__inner-left">
@@ -452,15 +527,16 @@
                 <img class="nab-logo" src="/assets/images/nab-logo.webp" />
                 <img class="royal-logo" src="/assets/images/royal-logo.webp" />
                 <img class="revolut-logo" src="/assets/images/revolut-logo.webp" />
+                <img class="hana-logo" src="/assets/images/hana-logo.webp" />
               </div>
               <div class="game-push__inner-text">
               <p class="game-push__inner-header">{{payment}}</p>
-              <span>{{recieved}} {{currency}}3820 {{from}}</span>
+              <span>{{recieved}} {{currency}}{{totalPaymentAmount}} {{from}}</span>
               <span class="game-push__inner-title">{{title}}</span>
                 </div>
               </div>
               <div class="game-push__inner-right">
-                <div class="game-push__inner-date">{{now}}</div>
+                <div class="game-push__inner-date {{lang}}">{{now}}</div>
               </div>
             </div>
           </div>

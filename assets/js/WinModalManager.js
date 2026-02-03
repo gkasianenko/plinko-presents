@@ -1,4 +1,4 @@
-import { animateNumber, CURRENCY } from "./utils.js";
+import { animateNumber } from "./utils.js";
 
 class WinModalManager {
   constructor(gameInstance) {

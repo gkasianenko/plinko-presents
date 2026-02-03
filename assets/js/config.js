@@ -1,4 +1,5 @@
 
+import { CURRENCYVALUE, isKoreanCurrency } from "./utils";
 
 
 const baseConfig = {
