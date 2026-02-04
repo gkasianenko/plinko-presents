@@ -2360,6 +2360,10 @@ canvas {
     font-size: 34px;
   }
 
+  .game-finale__button.ko {
+    height: 59px;
+}
+
   .game-finale__background {
     bottom: -144%;
   }
@@ -2649,6 +2653,10 @@ canvas {
     font-size: 25px;
     width: 176px;
   }
+
+  .game-finale__button.ko {
+    height: 41px;
+}
 
   .game-finale__title-win {
     font-size: 32px;

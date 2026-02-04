@@ -289,7 +289,7 @@ const LOCALES = {
     hiddenBonusAmount: '1500'
   },
   AU: {
-    lang: "en",
+    lang: "au",
     bank: "nab",
     currency: "$",
     currencyType: "USD",

@@ -4,7 +4,7 @@ import { LOCALES as locales } from "./assets/locales/index.js";
 
 export default defineConfig(({ mode }) => {
   let gameMode = "click";
-  let gameLocale = 'DE';
+  let gameLocale = 'AU';
 
   if (mode && mode !== "development") {
     gameMode = mode;
