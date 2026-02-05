@@ -203,6 +203,22 @@
                     </div>
                   </div>
                 </div>
+                <div class="royal-search">
+                  <div class="royal-search__left">
+                   <img
+                    class="royal-search-arrow"
+                    src="/assets/images/royal-arrow-left.webp" />
+                    <div class="royal-search-bar">
+                      <img
+                       class="royal-search-icon"
+                       src="/assets/images/royal-search-white.webp" />
+                      <span>{{search}}</span>
+                    </div>
+                  </div>
+                  <div class="royal-search__right">
+                    <img class="royal-faq" src="/assets/images/royal-faq.webp"/>
+                  </div>
+                </div>
               </div>
               <div class="game-app__balance">
                 <span class="nab-info">{{balance}}</span>
@@ -219,6 +235,9 @@
                   </div>
                 </div>
                 <span id="app-amount" class="game-app__amount">{{currency}}0</span>
+                <div class="royal-info">
+                  <img class="royal-more" src="/assets/images/royal-more.webp"/>
+                </div>
                 <div class="game-app__accounts">
                   <span>{{accounts}}</span>
                 </div>
@@ -307,11 +326,23 @@
                     <div class="nab-controls__text">{{statements}}</div>
                   </div>
                 </div>
+                <div class="royal-controls">
+                  <div class="royal-controls__item">{{transactions}}</div>
+                  <div class="royal-controls__item active">{{details}}</div>
+                </div>
               </div>
               <div class="game-app__notifications-wrapper">
                 <div class="game-app__more-wrapper">
                   <img class="nab-search" src="/assets/images/nab-search.webp" />
                   <span class="game-app__more">{{seeAll}}</span>
+                  <div class="royal-more">
+
+                      <span>{{recent}}</span>
+
+
+                      <img class="royal-more-icon" src="/assets/images/royal-search-blue.webp" />
+
+                  </div>
                 </div>
               <div class="game-app__notifications" id="app-notifications">
                 <div class="game-app__notification">
@@ -485,6 +516,35 @@
                       <span class="hana-nav__item-text">
                         {{menu}}
                       </span>
+                </div>
+              </div>
+              <div class="royal-nav">
+                <div class="royal-nav__inner">
+                <div class="royal-nav__left">
+                  <div class="royal-nav__item home">
+                    <img src="/assets/images/royal-home.webp" />
+                    <span>{{home}}</span>
+                  </div>
+                  <div class="royal-nav__item accounts">
+                    <img src="/assets/images/royal-accounts.webp" />
+                    <span>{{accounts}}</span>
+                  </div>
+                </div>
+                <div class="royal-nav__right">
+                  <div class="royal-nav__item move">
+                    <img src="/assets/images/royal-move.webp" />
+                    <span>{{move}}</span>
+                  </div>
+                  <div class="royal-nav__item more">
+                    <img src="/assets/images/royal-moree.webp" />
+                    <span>{{more}}</span>
+                  </div>
+                </div>
+                </div>
+                <div class="royal-nav__arrow">
+                  <div class="royal-nav__arrow-inner">
+                    <img class="royal-arrow-up" src="/assets/images/royal-arrow-up.webp" />
+                  </div>
                 </div>
               </div>
             </div>

@@ -742,6 +742,7 @@ canvas {
 
 .game-app.nab .game-app__controls .revolut-controls,
 .game-app.hana .game-app__controls .revolut-controls,
+.game-app.royal .game-app__controls .revolut-controls,
 .game-app .game-app__controls .nab-controls {
   display: none;
 }
@@ -972,6 +973,10 @@ canvas {
   justify-content: space-between;
   gap: 15px;
   padding: 10px 16px;
+}
+
+.game-app.royal .game-app__more {
+  display: none;
 }
 
 .game-push .game-push__wrapper {
@@ -1690,6 +1695,283 @@ canvas {
   transition: 0.3s all ease-in-out;
 }
 
+.game-app.royal {
+  background: #fff;
+}
+.game-app.royal .game-app__wrapper {
+  background: #fff;
+  max-width: unset;
+}
+
+.game-app.royal .royal-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  padding-right: 30px;
+  padding-left: 15px;
+  padding-bottom: 60px;
+  margin-left: -16px;
+  margin-right: -16px;
+  background: #006ac2;
+}
+
+.game-app.royal .royal-search__left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 80%;
+}
+
+.game-app.royal .royal-search__left .royal-search-bar {
+  position: relative;
+  font-family: var(--roboto);
+  color: #fff;
+  padding-left: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 40px;
+  background: #2c84cc;
+  font-size: 12px;
+  width: 70%;
+  border-radius: 26px;
+  font-weight: 300;
+}
+
+.game-app.royal .royal-search__left .royal-search-bar .royal-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 15px;
+  height: 15px;
+}
+
+.game-app.royal .royal-search__right .royal-faq {
+  width: 25px;
+}
+
+.game-app.royal .royal-search-arrow {
+  height: 20px;
+  width: 15px;
+}
+
+.game-app.royal .game-app__search {
+  padding-top: 0;
+  margin-left: -16px;
+    margin-right: -16px;
+}
+
+.game-app.royal .game-app__amount {
+  color: #000;
+}
+
+.game-app.royal .game-app__balance {
+  max-width: 600px;
+    width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 50px;
+  padding-right: 15px;
+}
+
+.game-app.royal .revolut-controls,
+.game-app.royal .nab-controls {
+  display: none;
+}
+
+.game-app.royal .game-app__controls {
+  margin-left: -16px;
+  margin-right: -16px;
+  padding: 0;
+}
+
+.game-app.royal .royal-controls {
+  display: flex;
+  width: 100%;
+  border-top: 2px solid #dddddd;
+}
+
+.game-app.royal .royal-controls .royal-controls__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 60px;
+  font-family: var(--roboto);
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.game-app.royal .royal-controls .royal-controls__item.active {
+  background: #f4f8f8;
+  color: #006ac2;
+}
+
+.game-app.royal .royal-nav {
+  position: relative;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--roboto);
+  font-weight: 500;
+  font-size: 11px;
+  border-top: 2px solid #dddddd;
+}
+
+.game-app.royal .royal-nav .royal-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.game-app.royal .royal-nav .royal-nav__left {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.game-app.royal .royal-nav .royal-nav__right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.game-app.royal .royal-nav .royal-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.game-app.royal .royal-nav .royal-nav__item.home img {
+  width: 22px;
+}
+
+.game-app.royal .royal-nav .royal-nav__item.accounts img {
+  width: 26px;
+}
+
+.game-app.royal .royal-nav .royal-nav__item.more {
+  gap: 13px;
+}
+
+.game-app.royal .royal-nav .royal-nav__item.more img {
+  width: 25px;
+}
+
+.game-app.royal .royal-nav .royal-nav__item.move {
+  gap: 3px;
+}
+.game-app.royal .royal-nav .royal-nav__item.move img {
+  width: 40px;
+}
+
+.game-app.royal .royal-nav__arrow {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background: #fff;
+  width: 65px;
+  height: 65px;
+}
+
+.game-app.royal .royal-nav__arrow .royal-nav__arrow-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background: #fddf03;
+  width: 60px;
+  height: 60px;
+}
+
+.game-app.royal .royal-nav__arrow .royal-arrow-up {
+width: 25px;
+margin-left: 2px;
+}
+
+.game-app.royal .game-app__more-wrapper .royal-more {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+font-family: var(--roboto);
+margin-bottom: 0;
+font-weight: 600;
+font-size: 14px;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.game-app.royal .game-app__more-wrapper .royal-more__left, .game-app.royal .game-app__more-wrapper .royal-more__right {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.game-app.royal .game-app__more-wrapper .royal-more-icon {
+width: 20px;
+}
+
+.game-app.royal .game-app__top {
+height: 27%;
+}
+
+.game-app.royal .game-app__bottom {
+gap: 35px;
+height: 63%;
+}
+
+.game-app.royal .game-app__bottom .game-app__notification-info {
+color: #000;
+font-weight: 500;
+}
+
+.game-app.royal .game-app__notification .right {
+color: #000;
+margin-right: 5px;
+}
+
+.game-app.royal .game-app__notification .right::before {
+  position: relative;
+  content: "+";
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.game-app.royal .game-app__notification .game-app__notification-logo, .game-app.royal .game-app__notification .game-app__notification-logo img{
+border-radius: 100px;
+}
+
+.game-app.royal .game-app__notifications-wrapper {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-app.royal .game-app__notifications {
+background: #fff;
+}
+
 @keyframes shakeAndScale {
   0% {
     transform: scale(1) rotate(0);
@@ -2157,6 +2439,14 @@ canvas {
   .game-app.revolut .game-app__nav .revolut-nav .revolut-nav__item {
     transform: scale(0.8);
   }
+
+  .game-app.royal .royal-search {
+    padding-bottom: 40px;
+  }
+
+  .game-app.royal .royal-controls {
+    display: none;
+  }
 }
 
 /* Устройства с шириной меньше 768px в landscape */
@@ -2362,7 +2652,7 @@ canvas {
 
   .game-finale__button.ko {
     height: 59px;
-}
+  }
 
   .game-finale__background {
     bottom: -144%;
@@ -2383,6 +2673,10 @@ canvas {
     justify-content: center;
   }
 
+  .game-app.royal .game-app__search {
+    display: block
+  }
+
   .game-app__search img {
     width: 70%;
   }
@@ -2393,6 +2687,10 @@ canvas {
     justify-content: center;
   }
 
+  .game-app.royal .game-app__nav {
+    display: block;
+  }
+
   .game-app__bottom {
     justify-content: center;
     align-items: center;
@@ -2401,6 +2699,13 @@ canvas {
   .game-app__notifications {
     width: 70%;
     height: 230px;
+  }
+  
+  .game-app.royal .game-app__notifications {
+    width: 100%;
+                max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
   }
 
   .game-app__notification {
@@ -2563,6 +2868,7 @@ canvas {
 
   .game-app.hana .game-app__notifications {
     width: 100%;
+
   }
 
   .game-app.hana .game-app__balance .game-app__amount {
@@ -2573,6 +2879,14 @@ canvas {
     display: block;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .game-app.royal .game-app__bottom {
+    height: 59%;
+  }
+
+  .game-app.royal .game-app__more-wrapper .royal-more {
+    display: none;
   }
 }
 
@@ -2656,7 +2970,7 @@ canvas {
 
   .game-finale__button.ko {
     height: 41px;
-}
+  }
 
   .game-finale__title-win {
     font-size: 32px;
@@ -2812,6 +3126,79 @@ canvas {
     height: 21%;
     gap: 0;
   }
+
+  .game-app.royal .royal-search {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    .game-app.royal .royal-search__left .royal-search-bar {
+      height: 25px;
+      padding-left: 30px;
+    }
+
+    .game-app.royal .royal-search-arrow {
+    height: 15px;
+    width: 10px;
+}
+
+.game-app.royal .royal-search__left .royal-search-bar .royal-search-icon {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+}
+
+.game-app.royal .royal-search__right .royal-faq {
+    width: 20px;
+}
+
+.game-app.royal .game-app__balance .royal-more {
+   height: 20px;
+}
+
+    .game-app__amount {
+        font-size: 20px;
+    }
+
+   .game-app.royal .game-app__notifications {
+        margin-top: 30px; 
+      }
+
+          .game-app.royal .game-app__bottom {
+        height: 55%;
+    }
+
+    .game-app.royal .royal-nav {
+    padding: 5px 15px;
+    }
+
+    .game-app.royal .royal-nav__arrow .royal-nav__arrow-inner {
+      width: 50px;
+      height: 50px;
+    }
+
+    .game-app.royal .royal-nav__arrow {
+      top: -20px;
+    }
+
+    .game-app.royal .royal-nav .royal-nav__item {
+      gap: 5px;
+    }
+
+    .game-app.royal .royal-nav .royal-nav__item.move {
+      gap: 0px;
+    }
+
+    .game-app.royal .royal-nav .royal-nav__item.move img {
+    width: 37px;
+}
+
+.game-app.royal .royal-nav .royal-nav__item.more {
+    gap: 8px;
+}
+
 }
 
 @media (orientation: portrait) and (max-width: 500px) {
@@ -2899,6 +3286,10 @@ canvas {
     padding: 30px 0 0 0;
   }
 
+  .game-app.royal .game-app__search {
+        padding: 0 15px 0px 15px;
+  }
+
   .game-app.hana .game-app__search {
     padding: 15px 0 0 0;
   }
@@ -2908,7 +3299,7 @@ canvas {
   }
 
   .game-app__top {
-    height: 30%;
+    height: 25%;
     gap: 5px;
   }
 

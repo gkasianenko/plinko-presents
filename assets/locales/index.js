@@ -248,7 +248,7 @@ const LOCALES = {
     hiddenBonusAmount: '1500'
   },
   CD: {
-    lang: "en",
+    lang: "cd",
     bank: "royal",
     currency: "$",
     currencyType: "CAD",
@@ -267,11 +267,12 @@ const LOCALES = {
     payment: "Payment received",
     recieved: "You've received",
     from: "from",
-    search: "Search",
+    search: "Search RBC mobile",
     accounts: "Accounts",
     addMoney: "Add Money",
-    move: "Move",
+    move: "Move money",
     details: "Details",
+    transactions: 'Transactions',
     more: "More",
     home: "Home",
     invest: "Invest",
@@ -283,10 +284,11 @@ const LOCALES = {
     transferPay: "Transfer & Pay",
     cards: "My Cards",
     whereIs: "Where is the",
+    recent: 'Recent',
     bonusHidden: "bonus hidden?",
     totalPaymentAmount: '3820',
     partPaymentAmount: '1237',
-    hiddenBonusAmount: '1500'
+    hiddenBonusAmount: '1500',
   },
   AU: {
     lang: "au",

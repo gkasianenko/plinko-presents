@@ -38,6 +38,7 @@
 
     --luckiest: 'Luckiest Guy', 'Arial', sans-serif;
     --mont: 'Montserrat', 'Arial', sans-serif;
+        --roboto: 'Roboto', 'Arial', sans-serif;
 
     /* Адаптивные размеры */
     --mobile-controls-width: 180px;
